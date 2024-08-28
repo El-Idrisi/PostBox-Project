@@ -1,20 +1,21 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Rute untuk menampilkan halaman login
+Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Rute untuk memproses login
+Route::post('login', [AuthController::class, 'login']);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Rute untuk menampilkan halaman registrasi
+Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register');
 
-require __DIR__.'/auth.php';
+// Rute untuk memproses registrasi
+Route::post('register', [AuthController::class, 'register']);
+
+// Rute untuk halaman dashboard (halaman yang dapat diakses setelah login)
+Route::get('dashboard', function () {
+    return 'Welcome to your dashboard';
+})->middleware('auth');
