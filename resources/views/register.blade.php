@@ -42,9 +42,14 @@
             box-shadow: none;
             border-color: #28a745;
         }
-        .toggle-password {
+        .input-group-text {
+            background-color: transparent;
+            border: none;
             cursor: pointer;
             color: #28a745;
+        }
+        .input-group-text:hover {
+            color: #218838;
         }
         a {
             color: #28a745;
@@ -68,16 +73,23 @@
                 <label for="email" class="form-label">Email Address</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
-            <div class="mb-3 position-relative">
+            <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-                <span class="position-absolute end-0 top-0 mt-2 me-2 toggle-password" onclick="togglePassword()">
-                    <i id="toggleIcon" class="bi bi-eye"></i>
-                </span>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="password" name="password" required>
+                    <span class="input-group-text" onclick="togglePassword()">
+                        <i id="toggleIcon" class="bi bi-eye"></i>
+                    </span>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="password_confirmation" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                    <span class="input-group-text" onclick="togglePassword('password_confirmation', 'toggleIconConfirm')">
+                        <i id="toggleIconConfirm" class="bi bi-eye"></i>
+                    </span>
+                </div>
             </div>
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary btn-block">Register</button>
@@ -91,9 +103,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.js"></script>
 <script>
-    function togglePassword() {
-        const passwordField = document.getElementById('password');
-        const toggleIcon = document.getElementById('toggleIcon');
+    function togglePassword(fieldId = 'password', iconId = 'toggleIcon') {
+        const passwordField = document.getElementById(fieldId);
+        const toggleIcon = document.getElementById(iconId);
         if (passwordField.type === 'password') {
             passwordField.type = 'text';
             toggleIcon.classList.remove('bi-eye');

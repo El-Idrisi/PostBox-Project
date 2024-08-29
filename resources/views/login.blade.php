@@ -42,9 +42,14 @@
             box-shadow: none;
             border-color: #1e90ff;
         }
-        .toggle-password {
+        .input-group-text {
+            background-color: transparent;
+            border: none;
             cursor: pointer;
             color: #1e90ff;
+        }
+        .input-group-text:hover {
+            color: #1c86ee;
         }
         a {
             color: #1e90ff;
@@ -61,15 +66,17 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="mb-3">
-                <label for="email" class="form-label">Username</label>
+                <label for="email" class="form-label">Email Address</label>
                 <input type="email" class="form-control" id="email" name="email" required autofocus>
             </div>
-            <div class="mb-3 position-relative">
+            <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-                <span class="position-absolute end-0 top-0 mt-2 me-2 toggle-password" onclick="togglePassword()">
-                    <i id="toggleIcon" class="bi bi-eye"></i>
-                </span>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="password" name="password" required>
+                    <span class="input-group-text" onclick="togglePassword()">
+                        <i id="toggleIcon" class="bi bi-eye"></i>
+                    </span>
+                </div>
             </div>
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary btn-block">Login</button>
