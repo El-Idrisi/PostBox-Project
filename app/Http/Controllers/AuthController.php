@@ -19,7 +19,7 @@ class AuthController extends Controller
    // Proses login
    public function login(Request $request)
    {
-       $credentials = $request->only('email', 'password');
+       $credentials = $request->only('username', 'password');
 
        if (Auth::attempt($credentials)) {
            $request->session()->regenerate();
