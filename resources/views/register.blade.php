@@ -1,84 +1,109 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #212529;
+            background-color: #000;
+            font-family: 'Poppins', sans-serif;
             color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .register-container {
-            max-width: 400px;
-            width: 100%;
         }
         .card {
-            background-color: #343a40;
             border: none;
-            border-radius: 8px;
-        }
-        .card-body {
-            padding: 2rem;
+            border-radius: 20px;
+            background-color: #fff;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
+            background-color: #28a745;
+            border-color: #28a745;
+            transition: background-color 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #004085;
+            background-color: #218838;
+            border-color: #218838;
         }
-        .alert {
-            margin-top: 1rem;
+        .form-label {
+            font-weight: bold;
+            color: #555;
+        }
+        .form-control {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            color: #333;
+            border-radius: 10px;
+        }
+        .form-control:focus {
+            background-color: #fff;
+            box-shadow: none;
+            border-color: #28a745;
+        }
+        .toggle-password {
+            cursor: pointer;
+            color: #28a745;
+        }
+        a {
+            color: #28a745;
+        }
+        a:hover {
+            color: #218838;
         }
     </style>
 </head>
 <body>
-    <div class="register-container">
-        <div class="card">
-            <div class="card-body">
-                <h2 class="card-title text-center mb-4">Register</h2>
-                <form action="{{ url('register') }}" method="POST">
-                    @csrf
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password_confirmation">Confirm Password:</label>
-                        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Register</button>
-                    @if ($errors->any())
-                        <div class="alert alert-danger mt-3">
-                            @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                            @endforeach
-                        </div>
-                    @endif
-                </form>
-                <p class="text-center mt-3">Sudah punya akun? <a href="{{ url('login') }}" class="text-primary">Login di sini</a></p>
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div class="card p-4" style="max-width: 400px; width: 100%;">
+        <h3 class="text-center mb-4">Register</h3>
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" name="name" required autofocus>
             </div>
-        </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3 position-relative">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+                <span class="position-absolute end-0 top-0 mt-2 me-2 toggle-password" onclick="togglePassword()">
+                    <i id="toggleIcon" class="bi bi-eye"></i>
+                </span>
+            </div>
+            <div class="mb-3">
+                <label for="password_confirmation" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </div>
+            <p class="text-center mt-3">
+                Already have an account? <a href="{{ route('login') }}">Login</a>
+            </p>
+        </form>
     </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.js"></script>
+<script>
+    function togglePassword() {
+        const passwordField = document.getElementById('password');
+        const toggleIcon = document.getElementById('toggleIcon');
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            toggleIcon.classList.remove('bi-eye');
+            toggleIcon.classList.add('bi-eye-slash');
+        } else {
+            passwordField.type = 'password';
+            toggleIcon.classList.remove('bi-eye-slash');
+            toggleIcon.classList.add('bi-eye');
+        }
+    }
+</script>
 </body>
 </html>
