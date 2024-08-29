@@ -79,7 +79,7 @@
 <div class="container vh-100 d-flex justify-content-center align-items-center">
     <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
         <h3 class="text-center mb-4">Login</h3>
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="">
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Username</label>
@@ -98,7 +98,7 @@
                 <button type="submit" class="btn btn-primary">Login</button>
             </div>
             <p class="text-center mt-3">
-                Don't have an account? <a href="{{ route('register') }}">Register</a>
+                Don't have an account? <a href="">Register</a>
             </p>
         </form>
     </div>

@@ -80,7 +80,7 @@
 <div class="container vh-100 d-flex justify-content-center align-items-center">
     <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
         <h3 class="text-center mb-4">Register</h3>
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Full Name</label>
@@ -112,7 +112,7 @@
                 <button type="submit" class="btn btn-primary">Register</button>
             </div>
             <p class="text-center mt-3">
-                Already have an account? <a href="{{ route('login') }}">Login</a>
+                Already have an account? <a href="">Login</a>
             </p>
         </form>
     </div>
