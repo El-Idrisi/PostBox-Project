@@ -3,6 +3,11 @@
 @section('title', 'Home')
 
 @section('content')
-    <h1>Welcome to the Home Page</h1>
-    <p>This is the home page content.</p>
+<div class="container">
+    <h1>Home Page</h1>
+    <p>Scroll down to see more content.</p>
+    <div style="height: 1500px;"> <!-- Contoh konten panjang untuk scroll -->
+        <p>More content here...</p>
+    </div>
+</div>
 @endsection

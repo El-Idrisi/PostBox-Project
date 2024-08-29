@@ -1,57 +1,78 @@
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #15202b;
-    color: #ffffff;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.wrapper {
-    display: flex;
-    width: 100%;
-}
-
+/* Sidebar styling */
 .sidebar {
     width: 250px;
-    background-color: #192734;
-    height: 100vh;
-    padding: 20px 0;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
     position: fixed;
     top: 0;
+    left: -250px;
+    height: 100%;
+    transition: left 0.3s ease;
+    z-index: 1000;
+    background-color: #000;
+    overflow-y: auto;
+}
+
+.sidebar.show-sidebar {
     left: 0;
 }
 
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
+.sidebar-header {
+    border-bottom: 1px solid #495057;
+    margin-bottom: 20px;
 }
 
-.sidebar ul li {
-    margin: 20px 0;
+.nav-link {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    color: #bbb;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.sidebar ul li a {
-    color: #ffffff;
-    text-decoration: none;
-    padding: 15px 20px;
-    display: block;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 25px;
-    transition: background-color 0.2s;
+.nav-link .fas {
+    font-size: 1.25rem;
 }
 
-.sidebar ul li a:hover {
-    background-color: #1c9dea;
+.nav-link.active {
+    background-color: #343a40;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar .btn-outline-light {
+    margin-right: auto;
+}
+
+.dropdown-menu-end {
+    right: 0;
+    left: auto;
 }
 
 .content {
-    margin-left: 250px;
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #15202b;
-    min-height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content {
+        padding-top: 60px; /* Adjust content padding when navbar is fixed at top */
+    }
+
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    .btn-outline-light {
+        font-size: 1.25rem;
+    }
 }
