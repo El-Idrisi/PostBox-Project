@@ -58,6 +58,22 @@
         a:hover {
             color: #218838;
         }
+        .inputpassword {
+            border: none;
+            background-color: transparent;
+        }
+        .inputpassword:focus {
+            border: none;
+            background-color: transparent;
+        }
+        .inputconfirmpassword {
+            border: none;
+            background-color: transparent;
+        }
+        .inputconfirmpassword:focus {
+            border: none;
+            background-color: transparent;
+        }
     </style>
 </head>
 <body>
@@ -76,14 +92,21 @@
             </div>
             <div class="mb-3 position-relative">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-                <span class="position-absolute end-0 top-0 mt-2 me-2" style="cursor: pointer;" onclick="togglePassword()">
-                    <i id="toggleIcon" class="bi bi-eye"></i>
-                </span>
+                <div class="d-flex flex-row form-control">
+                    <input style="width: 100%" class="inputpassword" type="password" id="password" name="password" required>
+                    <span class="input-group-text eye-icon" onclick="togglePasswordVisibility('password')">
+                        <i class="fa fa-eye" id="eye-icon-password"></i>
+                    </span>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="password_confirmation" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                <div class="d-flex flex-row form-control">
+                    <input style="width: 100%" class="inputconfirmpassword" type="password" id="confirm-password" name="confirm-password" required>
+                    <span class="input-group-text eye-icon" onclick="togglePasswordVisibility('confirm-password')">
+                        <i class="fa fa-eye" id="eye-icon-confirm-password"></i>
+                    </span>
+                </div>
             </div>
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary">Register</button>

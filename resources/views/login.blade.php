@@ -43,6 +43,13 @@
             box-shadow: none;
             border-color: #1e90ff;
         }
+        .form-group .eye-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
         .input-group-text {
             background-color: transparent;
             border: none;
@@ -58,6 +65,14 @@
         a:hover {
             color: #1c86ee;
         }
+        .inputpassword {
+            border: none;
+            background-color: transparent;
+        }
+        .inputpassword:focus {
+            border: none;
+            background-color: transparent;
+        }
     </style>
 </head>
 <body>
@@ -68,14 +83,16 @@
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Username</label>
-                <input type="email" class="form-control" id="name" name="name" required autofocus>
+                <input style="width: 100%" input type="name" class="form-control" id="name" name="name" required autofocus>
             </div>
             <div class="mb-3 position-relative">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-                <span class="position-absolute end-0 top-0 mt-2 me-2" style="cursor: pointer;" onclick="togglePassword()">
-                    <i id="toggleIcon" class="bi bi-eye"></i>
-                </span>
+                <div class="d-flex flex-row form-control">
+                    <input style="width: 100%" class="inputpassword" type="password" id="password" name="password" required>
+                    <span class="input-group-text eye-icon" onclick="togglePasswordVisibility('password')">
+                        <i class="fa fa-eye" id="eye-icon-password"></i>
+                    </span>
+                </div>
             </div>
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary">Login</button>
