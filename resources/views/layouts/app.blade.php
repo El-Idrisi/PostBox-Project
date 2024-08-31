@@ -1,6 +1,6 @@
 <!-- resources/views/layouts/app.blade.php -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -20,7 +20,7 @@
         @include('components.sidebar')
 
         <!-- Content -->
-        <div class="content" id="content">
+        <div class="content content-shifted" id="content">
             @yield('content')
         </div>
     </div>
