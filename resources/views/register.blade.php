@@ -1,141 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <style>
-        body {
-            background-color: #000;
-            font-family: 'Poppins', sans-serif;
-            color: #fff;
-        }
-        .card {
-            border: none;
-            border-radius: 20px;
-            background-color: #fff;
-            color: #333;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .form-label {
-            font-weight: bold;
-            color: #555;
-        }
-        .form-control {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            color: #333;
-            border-radius: 10px;
-        }
-        .form-control:focus {
-            background-color: #fff;
-            box-shadow: none;
-            border-color: #1e90ff;
-        }
-        .input-group-text {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            color: #1e90ff;
-        }
-        .input-group-text:hover {
-            color: #1c86ee
-        }
-        a {
-            color: #1e90ff;
-        }
-        a:hover {
-            color: #1c86ee;
-        }
-        .inputpassword {
-            border: none;
-            background-color: transparent;
-        }
-        .inputpassword:focus {
-            border: none;
-            background-color: transparent;
-        }
-        .inputconfirmpassword {
-            border: none;
-            background-color: transparent;
-        }
-        .inputconfirmpassword:focus {
-            border: none;
-            background-color: transparent;
-        }
-    </style>
-</head>
-<body>
-<div class="container vh-100 d-flex justify-content-center align-items-center">
-    <div class="card bg-dark text-bg-dark shadow p-4" style="max-width: 400px; width: 100%;">
-        <h3 class="text-center mb-4">Register</h3>
-        <form method="POST" action="{{ route('register.submit') }}">
-            @csrf
-            <div class="mb-3">
-                <label for="name" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="name" name="name" required autofocus>
-            </div>
+@extends('layouts.app')
 
-            @error('name')
-                <p class="text-danger">{{ $message }}</p>
-            @enderror
-            <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
+@section('title')
+    Sign Up
+@endsection
 
-            @error('email')
-                <p class="text-danger">{{ $message }}</p>
-            @enderror
-            <div class="mb-3 position-relative">
-                <label for="password" class="form-label">Password</label>
-                <div class="d-flex flex-row form-control p-0">
-                    <input style="width: 100%" class="inputpassword form-control border-0" type="password" id="password" name="password" required>
-                    <span class="input-group-text eye-icon" onclick="togglePasswordVisibility('password')">
-                        <i class="fa fa-eye" id="eye-icon-password"></i>
-                    </span>
-                </div>
-            </div>
+@section('content')
+    <x-form>
+        <x-slot:title>
+            Sign Up
+        </x-slot:title>
 
-            @error('password')
-                <p class="text-danger">{{ $message }}</p>
-            @enderror
+        <x-slot:route>
+            {{ route('register.submit') }}
+        </x-slot:route>
 
-            <div class="mb-3">
-                <label for="password_confirmation" class="form-label">Confirm Password</label>
-                <div class="d-flex flex-row form-control p-0">
-                    <input style="width: 100%" class="inputconfirmpassword form-control border-0" type="password" id="confirm-password" name="password_confirmation" required>
-                    <span class="input-group-text eye-icon" onclick="togglePasswordVisibility('confirm-password')">
-                        <i class="fa fa-eye" id="eye-icon-confirm-password"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="d-grid">
-                <button type="submit" class="btn btn-primary">Register</button>
-            </div>
-            <p class="text-center mt-3">
-                Already have an account? <a href="{{ route('login') }}">Login</a>
-            </p>
-        </form>
-    </div>
-</div>
+        <x-input-name></x-input-name>
+        @error('name')
+            <p class="text-danger">{{ $message }}</p>
+        @enderror
+        <x-input-email></x-input-email>
+        @error('email')
+            <p class="text-danger">{{ $message }}</p>
+        @enderror
+        <x-input-password>
+            <x-slot:title>
+                Password
+            </x-slot:title>
+            <x-slot:id>
+                password
+            </x-slot:id>
+            <x-slot:type>
+                password
+            </x-slot:type>
+            <x-slot:name>
+                password
+            </x-slot:name>
+        </x-input-password>
+        @error('password')
+            <p class="text-danger">{{ $message }}</p>
+        @enderror
+        <x-input-password>
+            <x-slot:title>
+                Confirm Password
+            </x-slot:title>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-    <script>
-        function togglePasswordVisibility(id) {
-            const passwordField = document.getElementById(id);
-            const eyeIcon = document.getElementById(`eye-icon-${id}`);
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                eyeIcon.classList.remove('fa-eye');
-                eyeIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordField.type = 'password';
-                eyeIcon.classList.remove('fa-eye-slash');
-                eyeIcon.classList.add('fa-eye');
-            }
-        }
-    </script>
+            <x-slot:id>
+                password_confirmation
+            </x-slot:id>
+            <x-slot:type>
+                password
+            </x-slot:type>
+            <x-slot:name>
+                password_confirmation
+            </x-slot:name>
+        </x-input-password>
+        {{-- <x-input-confirm-password></x-input-confirm-password> --}}
+
+        <x-button-submit>
+            Sign Up
+        </x-button-submit>
+
+        <x-slot:haveLogin>
+            Already have an account? <a href="{{ route('login') }}">Login</a>
+        </x-slot:haveLogin>
+    </x-form>
+@endsection

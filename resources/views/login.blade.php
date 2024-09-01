@@ -1,153 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <style>
-        body {
-            background-color: #000;
-            font-family: 'Poppins', sans-serif;
-            color: #fff;
-        }
+@section('title')
+    Login
+@endsection
 
-        .card {
-            border: none;
-            border-radius: 20px;
-            background-color: #fff;
-            color: #333;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+@section('content')
+    <x-form>
+        <x-slot:title>
+            Login
+        </x-slot:title>
 
-        /* .btn-primary {
-            background-color: #1e90ff;
-            border-color: #1e90ff;
-            transition: background-color 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: #1c86ee;
-            border-color: #1c86ee;
-        } */
-        .form-label {
-            font-weight: bold;
-            color: #555;
-        }
+        <x-slot:route>
+            {{ route('login.submit') }}
+        </x-slot:route>
 
-        .form-control {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            color: #333;
-            border-radius: 10px;
-        }
+        <x-input-email></x-input-email>
+        <x-input-password>
+            <x-slot:title>
+                Password
+            </x-slot:title>
+            <x-slot:id>
+                password
+            </x-slot:id>
+            <x-slot:type>
+                password
+            </x-slot:type>
+            <x-slot:name>
+                password
+            </x-slot:name>
+        </x-input-password>
+        <x-button-submit>
+            Login
+        </x-button-submit>
 
-        .form-control:focus {
-            background-color: #fff;
-            box-shadow: none;
-            border-color: #1e90ff;
-        }
+        <x-slot:haveLogin>
+            Don't have an account? <a href="{{ route('register') }}">Register</a>
+        </x-slot:haveLogin>
 
-        .form-group .eye-icon {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
-
-        .input-group-text {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            color: #1e90ff;
-        }
-
-        .input-group-text:hover {
-            color: #1c86ee;
-        }
-
-        a {
-            color: #1e90ff;
-        }
-
-        a:hover {
-            color: #1c86ee;
-        }
-
-        .inputpassword {
-            border: none;
-            background-color: transparent;
-        }
-
-        .inputpassword:focus {
-            border: none;
-            background-color: transparent;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container vh-100 d-flex justify-content-center align-items-center flex-column">
-
-        @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-
-        <div class="card bg-dark text-bg-dark shadow p-4" style="max-width: 400px; width: 100%;">
-            <h3 class="text-center mb-4">Login</h3>
-            <form method="POST" action="{{ route('login.submit') }}">
-                @csrf
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input style="width: 100%" input type="email" class="form-control" id="email" name="email"
-                        required autofocus>
-                </div>
-                <div class="mb-3 position-relative">
-                    <label for="password" class="form-label">Password</label>
-                    <div class="d-flex flex-row form-control p-0">
-                        <input style="width: 100%" class="inputpassword form-control" type="password" id="password"
-                            name="password" required>
-                        <span class="input-group-text eye-icon" onclick="togglePasswordVisibility('password')">
-                            <i class="fa fa-eye" id="eye-icon-password"></i>
-                        </span>
-                    </div>
-                </div>
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </div>
-                <p class="text-center text-danger mt-3">
-                    @error('email')
-                        {{ $message }}
-                    @enderror
-                </p>
-                <p class="text-center mt-3">
-                    Don't have an account? <a href="{{ route('register') }}">Register</a>
-                </p>
-            </form>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-    <script>
-        function togglePasswordVisibility(id) {
-            const passwordField = document.getElementById(id);
-            const eyeIcon = document.getElementById(`eye-icon-${id}`);
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                eyeIcon.classList.remove('fa-eye');
-                eyeIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordField.type = 'password';
-                eyeIcon.classList.remove('fa-eye-slash');
-                eyeIcon.classList.add('fa-eye');
-            }
-        }
-    </script>
-</body>
-
-</html>
-
-</html>
+        @error('email')
+            <p class="mt-3 text-center text-danger">
+                {{ $message }}
+            </p>
+        @enderror
+        <p class="mt-3 text-center">
+    </x-form>
+@endsection
