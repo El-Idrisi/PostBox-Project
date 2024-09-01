@@ -19,15 +19,6 @@
             color: #333;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .btn-primary {
-            background-color: #28a745;
-            border-color: #28a745;
-            transition: background-color 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: #218838;
-            border-color: #218838;
-        }
         .form-label {
             font-weight: bold;
             color: #555;
@@ -41,22 +32,22 @@
         .form-control:focus {
             background-color: #fff;
             box-shadow: none;
-            border-color: #28a745;
+            border-color: #1e90ff;
         }
         .input-group-text {
             background-color: transparent;
             border: none;
             cursor: pointer;
-            color: #28a745;
+            color: #1e90ff;
         }
         .input-group-text:hover {
-            color: #218838;
+            color: #1c86ee
         }
         a {
-            color: #28a745;
+            color: #1e90ff;
         }
         a:hover {
-            color: #218838;
+            color: #1c86ee;
         }
         .inputpassword {
             border: none;
@@ -78,31 +69,44 @@
 </head>
 <body>
 <div class="container vh-100 d-flex justify-content-center align-items-center">
-    <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
+    <div class="card bg-dark text-bg-dark shadow p-4" style="max-width: 400px; width: 100%;">
         <h3 class="text-center mb-4">Register</h3>
-        <form method="POST" action="">
+        <form method="POST" action="{{ route('register.submit') }}">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Full Name</label>
                 <input type="text" class="form-control" id="name" name="name" required autofocus>
             </div>
+
+            @error('name')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
+
+            @error('email')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
             <div class="mb-3 position-relative">
                 <label for="password" class="form-label">Password</label>
-                <div class="d-flex flex-row form-control">
-                    <input style="width: 100%" class="inputpassword" type="password" id="password" name="password" required>
+                <div class="d-flex flex-row form-control p-0">
+                    <input style="width: 100%" class="inputpassword form-control border-0" type="password" id="password" name="password" required>
                     <span class="input-group-text eye-icon" onclick="togglePasswordVisibility('password')">
                         <i class="fa fa-eye" id="eye-icon-password"></i>
                     </span>
                 </div>
             </div>
+
+            @error('password')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
+
             <div class="mb-3">
                 <label for="password_confirmation" class="form-label">Confirm Password</label>
-                <div class="d-flex flex-row form-control">
-                    <input style="width: 100%" class="inputconfirmpassword" type="password" id="confirm-password" name="confirm-password" required>
+                <div class="d-flex flex-row form-control p-0">
+                    <input style="width: 100%" class="inputconfirmpassword form-control border-0" type="password" id="confirm-password" name="password_confirmation" required>
                     <span class="input-group-text eye-icon" onclick="togglePasswordVisibility('confirm-password')">
                         <i class="fa fa-eye" id="eye-icon-confirm-password"></i>
                     </span>
@@ -112,7 +116,7 @@
                 <button type="submit" class="btn btn-primary">Register</button>
             </div>
             <p class="text-center mt-3">
-                Already have an account? <a href="">Login</a>
+                Already have an account? <a href="{{ route('login') }}">Login</a>
             </p>
         </form>
     </div>
