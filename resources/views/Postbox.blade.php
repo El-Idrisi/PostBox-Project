@@ -7,7 +7,7 @@
         max-width: 600px;
         margin: 2rem auto;
         padding: 2rem;
-        background-color: #2D3748; /* Latar belakang abu-abu */
+        background-color: #18181b; /* Latar belakang abu-abu */
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
@@ -36,17 +36,17 @@
     .form-group textarea {
         width: 100%;
         padding: 0.75rem;
-        border: 1px solid #E2E8F0;
+        border: 1px solid #374151;
         border-radius: 4px;
-        background-color: #4A5568; /* Latar belakang input lebih gelap */
+        background-color: #18181b; /* Latar belakang input lebih gelap */
         color: #FFFFFF; /* Teks putih */
     }
 
     .form-group input[type="file"]::file-selector-button {
-        border: 1px solid #E2E8F0;
+        border: 1px solid #374151;
         padding: 0.5rem;
         border-radius: 4px;
-        background-color: #4A5568; /* Latar belakang tombol file selector */
+        background-color: #18181b; /* Latar belakang tombol file selector */
         color: #FFFFFF; /* Teks putih */
         cursor: pointer;
     }
@@ -84,7 +84,7 @@
             <label for="image">Upload Image:</label>
             <input type="file" id="image">
         </div>
-        
+
         <!-- Caption -->
         <div class="form-group">
             <label for="caption">Caption:</label>
