@@ -26,6 +26,10 @@ Route::get('/profile/edit', function () {
     return view('editprofile');
 })->name('editprofile');
 
+Route::get('/search', function () {
+    return view('search');
+})->name('search');
+
 Route::post('/profile/update', function () {
     // Logika update profil (belum diimplementasikan)
     return redirect()->route('profile.edit');
