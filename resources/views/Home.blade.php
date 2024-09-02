@@ -1,6 +1,86 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    /* Styling untuk latar belakang */
+    body {
+        background-color: #1a1a1a; /* Background hitam */
+        color: #f5f5f5; /* Warna teks yang lebih terang */
+    }
+
+    /* Kontainer utama */
+    .stories-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 1rem;
+        background-color: rgba(0, 0, 0, 0.6); /* Background semi-transparan */
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Judul halaman */
+    .stories-header {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #ffffff; /* Warna teks putih */
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    /* Kartu cerita */
+    .story-card {
+        background-color: rgba(255, 255, 255, 0.1); /* Background semi-transparan */
+        border-radius: 12px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .story-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Header cerita (profil pengguna dan waktu posting) */
+    .story-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .story-header img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 1rem;
+    }
+
+    .story-header .username {
+        font-weight: bold;
+        color: #f5f5f5; /* Warna teks terang */
+    }
+
+    .story-header .timestamp {
+        font-size: 0.875rem;
+        color: #cbd5e0; /* Warna teks lebih redup */
+        margin-left: auto;
+    }
+
+    /* Gambar cerita */
+    .story-image {
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+
+    /* Teks cerita */
+    .story-content {
+        font-size: 1rem;
+        color: #e2e8f0; /* Warna teks lebih terang */
+        line-height: 1.6;
+    }
+</style>
 
 <div class="stories-container">
     <h2 class="stories-header">Stories</h2>
@@ -16,18 +96,6 @@
         <div class="story-content">
             This is a story about my recent trip to the mountains. It was an amazing experience with lots of breathtaking views!
         </div>
-        <div class="story-actions">
-            <div class="like-dislike">
-                <span class="like-icon">&#128077;</span> <!-- Emoji like -->
-                <span>10 Likes</span>
-            </div>
-        </div>
-        <div class="comment-section">
-            <div class="comment">Jane: Looks amazing!</div>
-            <div class="comment">Alice: Wow, I wish I were there!</div>
-            <input type="text" class="comment-input" placeholder="Add a comment...">
-            <button class="submit-comment">Post</button>
-        </div>
     </div>
 
     <!-- Cerita 2 -->
@@ -40,18 +108,6 @@
         <img src="https://via.placeholder.com/800x400" alt="Story Image" class="story-image">
         <div class="story-content">
             I just baked my first batch of cookies! They turned out great, and I wanted to share the recipe with you all.
-        </div>
-        <div class="story-actions">
-            <div class="like-dislike">
-                <span class="like-icon">&#128077;</span> <!-- Emoji like -->
-                <span>25 Likes</span>
-            </div>
-        </div>
-        <div class="comment-section">
-            <div class="comment">John: I want to try that recipe!</div>
-            <div class="comment">Alice: Those look delicious!</div>
-            <input type="text" class="comment-input" placeholder="Add a comment...">
-            <button class="submit-comment">Post</button>
         </div>
     </div>
 
@@ -66,18 +122,7 @@
         <div class="story-content">
             Today, I decided to start a new hobby: painting. Here’s my first attempt, what do you think?
         </div>
-        <div class="story-actions">
-            <div class="like-dislike">
-                <span class="like-icon">&#128077;</span> <!-- Emoji like -->
-                <span>15 Likes</span>
-            </div>
-        </div>
-        <div class="comment-section">
-            <div class="comment">John: That's really good for a first attempt!</div>
-            <div class="comment">Jane: Keep it up, you'll get even better!</div>
-            <input type="text" class="comment-input" placeholder="Add a comment...">
-            <button class="submit-comment">Post</button>
-        </div>
     </div>
+
 </div>
 @endsection
