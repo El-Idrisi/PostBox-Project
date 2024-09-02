@@ -1,5 +1,5 @@
 <!-- resources/views/components/sidebar.blade.php -->
-<div class="sidebar bg-black text-white " id="sidebar">
+<div class="sidebar bg-black text-white" id="sidebar">
     <div class="sidebar-header py-4">
         <h4>Menu</h4>
         <div class="accordion" id="accordionExample">
@@ -15,7 +15,7 @@
                         <ul class="list-group list-group-flush">
                             <li>
                                 <a class="list-group-item {{ request()->routeIs('profile') ? 'active' : '' }}" href="{{ route('profile') }}">
-                                <i class="fa-solid fa-user"></i> Profile
+                                    <i class="fa-solid fa-user"></i> Profile
                                 </a>
                             </li>
                             <li class="logout">
@@ -39,6 +39,11 @@
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('fresh') ? 'active' : '' }}" href="{{ route('fresh') }}">
                 <i class="fas fa-fire me-2"></i> Fresh
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('search') ? 'active' : '' }}" href="{{ route('search') }}">
+                <i class="fas fa-search me-2"></i> Search
             </a>
         </li>
         <li class="nav-item">
