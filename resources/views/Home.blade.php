@@ -80,6 +80,66 @@
         color: #e2e8f0; /* Warna teks lebih terang */
         line-height: 1.6;
     }
+
+    /* Bagian komentar dan like */
+    .story-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1rem;
+    }
+
+    .like-dislike {
+        display: flex;
+        align-items: center;
+    }
+
+    .like-icon, .dislike-icon {
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin-right: 0.5rem;
+        transition: transform 0.3s ease;
+    }
+
+    .like-icon:hover, .dislike-icon:hover {
+        transform: scale(1.2);
+    }
+
+    .comment-section {
+        margin-top: 1rem;
+        border-top: 1px solid #cbd5e0;
+        padding-top: 1rem;
+    }
+
+    .comment {
+        margin-bottom: 0.5rem;
+        color: #f5f5f5;
+    }
+
+    .comment-input {
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: 8px;
+        border: 1px solid #cbd5e0;
+        background-color: rgba(0, 0, 0, 0.3);
+        color: #f5f5f5;
+    }
+
+    .submit-comment {
+        margin-top: 0.5rem;
+        padding: 0.5rem 1rem;
+        background-color: #007bff;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+
+    .submit-comment:hover {
+        background-color: #0069d9;
+    }
 </style>
 
 <div class="stories-container">
@@ -96,6 +156,18 @@
         <div class="story-content">
             This is a story about my recent trip to the mountains. It was an amazing experience with lots of breathtaking views!
         </div>
+        <div class="story-actions">
+            <div class="like-dislike">
+                <span class="like-icon">&#128077;</span> <!-- Emoji like -->
+                <span>10 Likes</span>
+            </div>
+        </div>
+        <div class="comment-section">
+            <div class="comment">Jane: Looks amazing!</div>
+            <div class="comment">Alice: Wow, I wish I were there!</div>
+            <input type="text" class="comment-input" placeholder="Add a comment...">
+            <button class="submit-comment">Post</button>
+        </div>
     </div>
 
     <!-- Cerita 2 -->
@@ -108,6 +180,18 @@
         <img src="https://via.placeholder.com/800x400" alt="Story Image" class="story-image">
         <div class="story-content">
             I just baked my first batch of cookies! They turned out great, and I wanted to share the recipe with you all.
+        </div>
+        <div class="story-actions">
+            <div class="like-dislike">
+                <span class="like-icon">&#128077;</span> <!-- Emoji like -->
+                <span>25 Likes</span>
+            </div>
+        </div>
+        <div class="comment-section">
+            <div class="comment">John: I want to try that recipe!</div>
+            <div class="comment">Alice: Those look delicious!</div>
+            <input type="text" class="comment-input" placeholder="Add a comment...">
+            <button class="submit-comment">Post</button>
         </div>
     </div>
 
@@ -122,7 +206,18 @@
         <div class="story-content">
             Today, I decided to start a new hobby: painting. Here’s my first attempt, what do you think?
         </div>
+        <div class="story-actions">
+            <div class="like-dislike">
+                <span class="like-icon">&#128077;</span> <!-- Emoji like -->
+                <span>15 Likes</span>
+            </div>
+        </div>
+        <div class="comment-section">
+            <div class="comment">John: That's really good for a first attempt!</div>
+            <div class="comment">Jane: Keep it up, you'll get even better!</div>
+            <input type="text" class="comment-input" placeholder="Add a comment...">
+            <button class="submit-comment">Post</button>
+        </div>
     </div>
-
 </div>
 @endsection
