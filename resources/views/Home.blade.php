@@ -80,6 +80,66 @@
         color: #e2e8f0; /* Warna teks lebih terang */
         line-height: 1.6;
     }
+
+    /* Bagian komentar dan like */
+    .story-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1rem;
+    }
+
+    .like-dislike {
+        display: flex;
+        align-items: center;
+    }
+
+    .like-icon, .dislike-icon {
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin-right: 0.5rem;
+        transition: transform 0.3s ease;
+    }
+
+    .like-icon:hover, .dislike-icon:hover {
+        transform: scale(1.2);
+    }
+
+    .comment-section {
+        margin-top: 1rem;
+        border-top: 1px solid #cbd5e0;
+        padding-top: 1rem;
+    }
+
+    .comment {
+        margin-bottom: 0.5rem;
+        color: #f5f5f5;
+    }
+
+    .comment-input {
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: 8px;
+        border: 1px solid #cbd5e0;
+        background-color: rgba(0, 0, 0, 0.3);
+        color: #f5f5f5;
+    }
+
+    .submit-comment {
+        margin-top: 0.5rem;
+        padding: 0.5rem 1rem;
+        background-color: #007bff;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+
+    .submit-comment:hover {
+        background-color: #0069d9;
+    }
 </style>
 
 <div class="stories-container">
