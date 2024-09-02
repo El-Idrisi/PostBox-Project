@@ -7,24 +7,23 @@
         max-width: 800px;
         margin: 2rem auto;
         padding: 1rem;
-        background-color: #f9fafb;
+        background-color: transparent;
         border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     /* Styling untuk header halaman */
     .notification-header {
         font-size: 1.5rem;
         font-weight: bold;
-        color: #333333;
+        color: #ffffff;
         margin-bottom: 1.5rem;
         text-align: center;
     }
 
     /* Styling untuk setiap notifikasi */
     .notification-card {
-        background-color: #ffffff;
-        border: 1px solid #e2e8f0;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 8px;
         padding: 1rem;
         margin-bottom: 1rem;
@@ -34,26 +33,26 @@
     }
 
     .notification-card:hover {
-        background-color: #edf2f7;
+        background-color: rgba(255, 255, 255, 0.2);
     }
 
     /* Styling untuk ikon notifikasi */
     .notification-icon {
         font-size: 1.5rem;
-        color: #3182ce;
+        color: #ffffff;
         margin-right: 1rem;
     }
 
     /* Styling untuk teks notifikasi */
     .notification-text {
         font-size: 1rem;
-        color: #2d3748;
+        color: #ffffff;
     }
 
     /* Styling untuk waktu notifikasi */
     .notification-time {
         font-size: 0.875rem;
-        color: #a0aec0;
+        color: rgba(255, 255, 255, 0.7);
         margin-left: auto;
     }
 </style>
