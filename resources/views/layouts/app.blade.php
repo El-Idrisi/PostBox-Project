@@ -1,4 +1,3 @@
-<!-- resources/views/layouts/app.blade.php -->
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 
@@ -11,13 +10,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-black text-white">
+<body class="text-white bg-black">
     <div class="wrapper">
         <!-- Include Navbar Component -->
-        @include('components.navbar')
+        <x-navbar></x-navbar>
 
         <!-- Include Sidebar Component -->
-        @include('components.sidebar')
+        <x-sidebar></x-sidebar>
 
         <!-- Content -->
         <div class="content content-shifted" id="content">

@@ -150,6 +150,10 @@ li.logout:hover a{
     border-radius: 8px;
 }
 
+/* button:hover {
+    background-color: #495057;
+} */
+
 
 /* Responsive adjustments */
 @media (min-width: 769px) {

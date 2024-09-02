@@ -19,11 +19,14 @@ class AuthController extends Controller
     // Proses login
     public function login(Request $request)
     {
-        $credentials = $request->only('username', 'password');
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/');
         }
 
         return back()->withErrors([
@@ -40,15 +43,11 @@ class AuthController extends Controller
     // Proses registrasi
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
         ]);
-
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
 
         User::create([
             'name' => $request->name,
@@ -56,13 +55,13 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('login')->with('success', 'Registration successful. Please login.');
+        // Redirect ke halaman login atau dashboard setelah registrasi berhasil
+        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
-
     // Menampilkan dashboard setelah login berhasil
-    public function dashboard()
+    public function home()
     {
-        return view('dashboard');
+        return view('home');
     }
 
     // Logout

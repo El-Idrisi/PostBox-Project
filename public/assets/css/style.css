@@ -1,0 +1,68 @@
+body {
+    background-color: #000;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+}
+
+.card {
+    border: none;
+    border-radius: 20px;
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+    font-weight: bold;
+    color: #f1f5f9;
+}
+
+.form-control {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    color: #333;
+    border-radius: 10px;
+}
+
+.form-control:focus {
+    background-color: #fff;
+    box-shadow: none;
+    border-color: #1e90ff;
+}
+
+.form-group .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.input-group-text {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #1e90ff;
+}
+
+.input-group-text:hover {
+    color: #1c86ee;
+}
+
+a {
+    color: #1e90ff;
+}
+
+a:hover {
+    color: #1c86ee;
+}
+
+.inputpassword {
+    border: none;
+    background-color: transparent;
+}
+
+.inputpassword:focus {
+    border: none;
+    background-color: transparent;
+}
