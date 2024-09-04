@@ -7,9 +7,9 @@
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <img src="{{ asset('images/download.png') }}" alt="Profile" class="rounded-circle"
+                        <img src="{{ asset('storage/'.$img) }}" alt="Profile" class="rounded-circle"
                             width="30" height="30">
-                        Profile
+                        {{ $nama }}
                     </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -17,8 +17,8 @@
                         <ul class="list-group list-group-flush">
                             <li>
                                 <a class="list-group-item {{ request()->routeIs('profile') ? 'active' : '' }}"
-                                    href="{{ route('profile') }}">
-                                    <i class="fa-solid fa-user"></i> Profile
+                                    href="{{ route("profile.show", $nama) }}">
+                                    <i class="fa-solid fa-user"></i> {{ $nama }}
                                 </a>
                             </li>
                             <li class="logout">

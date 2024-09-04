@@ -6,6 +6,7 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,6 +23,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'idrisi',
             'email' => 'test@gmail.com',
             'password' => Hash::make('admin123')
+        ]);
+
+        $this->call([
+            UserSeeder::class,
+            ProfileSeeder::class,
         ]);
     }
 }

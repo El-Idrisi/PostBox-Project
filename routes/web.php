@@ -1,36 +1,33 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/fresh', function () {
-    return view('fresh');
-})->middleware('auth')->name('fresh');
+Route::get('/', [RouteController::class, 'home'])->middleware('auth')->name('Home');
+Route::get('/fresh', [RouteController::class, 'fresh'])->middleware('auth')->name('fresh');
+Route::get('/notification', [RouteController::class, 'notification'])->middleware('auth')->name('notification');
+Route::get('/Postbox', [RouteController::class, 'postbox'])->middleware('auth')->name('Postbox');
+Route::get('/search', [RouteController::class, 'search'])->middleware('auth')->name('search');
 
-Route::get('/notification', function () {
-    return view('notification');
-})->middleware('auth')->name('notification');
+Route::get('/profile/{username}', [ProfileController::class, 'show'])->middleware('auth')->name('profile.show');
 
-Route::get('/profile', function () {
-    return view('profile');
-})->middleware('auth')->name('profile');
+Route::get('/profile/{username}/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('profile.edit');
 
-Route::get('/Postbox', function () {
-    return view('postbox');
-})->middleware('auth')->name('Postbox');
+Route::put('/profile/{username}', [ProfileController::class, 'update'])->middleware('auth')->name('profile.update');
+
+
 
 Route::get('/profile/edit', function () {
     return view('editprofile');
-})->middleware('auth')->name('editprofile');
+})->name('editprofile');
 
-Route::get('/search', function () {
-    return view('search');
-})->middleware('auth')->name('search');
 
-Route::post('/profile/update', function () {
-    // Logika update profil (belum diimplementasikan)
-    return redirect()->route('profile.edit');
-})->middleware('auth')->name('profile.update');
+// Route::post('/profile/update', function () {
+//     // Logika update profil (belum diimplementasikan)
+//     return redirect()->route('profile.edit');
+// })->middleware('auth')->name('profile.update');
 
 
 Route::get('/profile/settings', function () {
@@ -43,7 +40,6 @@ Route::post('/settings/update', function () {
 })->middleware('auth')->name('settings.update');
 
 
-Route::get('/', [AuthController::class, 'home'])->middleware('auth')->name('Home');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/login', [AuthController::class,'login'])->name('login.submit');

@@ -16,7 +16,15 @@
         <x-navbar></x-navbar>
 
         <!-- Include Sidebar Component -->
-        <x-sidebar></x-sidebar>
+        <x-sidebar>
+            <x-slot:img>
+                {{ $user['profile']['profile_picture'] }}
+            </x-slot:img>
+            <x-slot:nama>
+                {{ $user['name'] }}
+            </x-slot:nama>
+        </x-sidebar>
+        @yield('sidebar')
 
         <!-- Content -->
         <div class="content content-shifted" id="content">

@@ -57,6 +57,7 @@
     }
 </style>
 
+
 <div class="notification-container">
     <h2 class="notification-header">Notifications</h2>
 
