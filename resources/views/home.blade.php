@@ -52,7 +52,6 @@
             display: flex;
             align-items: center;
             margin-bottom: 1rem;
-            
         }
 
         .story-header img {
