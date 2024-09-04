@@ -156,35 +156,7 @@
 
     <div class="stories-container">
         <h2 class="stories-header">Stories</h2>
-        {{-- @foreach ($posts as $post) --}}
-        {{-- <x-post-card :user="$post->user->name" :user_pp="$post->user->profile->profile_picture ?? 'default-avatar.png'" :img="$post->image ?? 'default-post-image.jpg'" :desc="$post->content">
-                <x-slot name="user_pp">
-                    {{ $post->user->profile->profile_picture }}
-                </x-slot>
-                <x-slot name="user">
-                    {{ $post->user->name }}
-                </x-slot>
-
-                @if ($post->image != null)
-                    <x-slot name="img">
-                        <img class="story-image" src="{{ asset('storage/' . $post->image) }}" alt="Post Image">
-                    </x-slot>
-                @else
-                    <x-slot name="img">
-
-                    </x-slot>
-                @endif
-                <x-slot name="title">
-                    {{ $post->title }}
-                </x-slot>
-                <x-slot name="desc">
-                    {{ $post->content }}
-                </x-slot>
-                <x-slot name="timestamp">
-                    {{ $post->created_at->diffForHumans() }}
-                </x-slot>
-        </x-post-card> --}}
-        {{-- @endforeach --}}
+        
         @foreach ($posts as $post)
             @include('posts.load')
         @endforeach
