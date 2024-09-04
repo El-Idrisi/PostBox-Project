@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -11,8 +13,13 @@ class HomeController extends Controller
     //     $this->middleware('auth');
     // }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $user = auth()->user()->load('profile');
+        $posts = Post::with(['user.profile'])
+            ->inRandomOrder()
+            ->paginate(30);
+
+        return view('home', compact('posts', 'user'));
     }
 }

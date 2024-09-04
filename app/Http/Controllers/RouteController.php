@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
-    public function home()
-    {
-        $user = auth()->user()->load('profile');
 
-        return view('home', ['user' => $user]);
-    }
 
     public function fresh()
     {
         $user = auth()->user()->load('profile');
+        $freshPosts = Post::with('user.profile')
+            ->latest()
+            ->paginate(10);
 
-        return view('fresh', ['user' => $user]);
+        return view('fresh', compact('user', 'freshPosts'));
     }
 
     public function notification()

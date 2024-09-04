@@ -52,6 +52,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 1rem;
+            padding: 20px;
         }
 
         .story-header img {
@@ -82,11 +83,12 @@
         }
 
         /* Teks cerita */
-        .story-content {
+        .card-body {
             font-size: 1rem;
             color: #e2e8f0;
             /* Warna teks lebih terang */
             line-height: 1.6;
+            padding: 20px;
         }
 
         /* Bagian komentar dan like */
@@ -154,83 +156,39 @@
 
     <div class="stories-container">
         <h2 class="stories-header">Stories</h2>
+        {{-- @foreach ($posts as $post) --}}
+        {{-- <x-post-card :user="$post->user->name" :user_pp="$post->user->profile->profile_picture ?? 'default-avatar.png'" :img="$post->image ?? 'default-post-image.jpg'" :desc="$post->content">
+                <x-slot name="user_pp">
+                    {{ $post->user->profile->profile_picture }}
+                </x-slot>
+                <x-slot name="user">
+                    {{ $post->user->name }}
+                </x-slot>
 
-        <!-- Cerita 1 -->
-        <div class="story-card">
-            <div class="story-header">
-                <img src="https://via.placeholder.com/40" alt="User Profile">
-                <div class="username">John Doe</div>
-                <div class="timestamp">5 minutes ago</div>
-            </div>
-            <img src="https://via.placeholder.com/800x400" alt="Story Image" class="story-image">
-            <div class="story-content">
-                This is a story about my recent trip to the mountains. It was an amazing experience with lots of
-                breathtaking views!
-            </div>
-            <div class="story-actions">
-                <div class="like-dislike">
-                    <span class="like-icon">&#128077;</span> <!-- Emoji like -->
-                    <span>10 Likes</span>
-                </div>
-            </div>
-            <div class="comment-section">
-                <div class="comment">Jane: Looks amazing!</div>
-                <div class="comment">Alice: Wow, I wish I were there!</div>
-                <input type="text" class="comment-input" placeholder="Add a comment...">
-                <button class="submit-comment">Post</button>
-            </div>
-        </div>
+                @if ($post->image != null)
+                    <x-slot name="img">
+                        <img class="story-image" src="{{ asset('storage/' . $post->image) }}" alt="Post Image">
+                    </x-slot>
+                @else
+                    <x-slot name="img">
 
-        <!-- Cerita 2 -->
-        <div class="story-card">
-            <div class="story-header">
-                <img src="https://via.placeholder.com/40" alt="User Profile">
-                <div class="username">Jane Smith</div>
-                <div class="timestamp">10 minutes ago</div>
-            </div>
-            <img src="https://via.placeholder.com/800x400" alt="Story Image" class="story-image">
-            <div class="story-content">
-                I just baked my first batch of cookies! They turned out great, and I wanted to share the recipe with you
-                all.
-            </div>
-            <div class="story-actions">
-                <div class="like-dislike">
-                    <span class="like-icon">&#128077;</span> <!-- Emoji like -->
-                    <span>25 Likes</span>
-                </div>
-            </div>
-            <div class="comment-section">
-                <div class="comment">John: I want to try that recipe!</div>
-                <div class="comment">Alice: Those look delicious!</div>
-                <input type="text" class="comment-input" placeholder="Add a comment...">
-                <button class="submit-comment">Post</button>
-            </div>
-        </div>
+                    </x-slot>
+                @endif
+                <x-slot name="title">
+                    {{ $post->title }}
+                </x-slot>
+                <x-slot name="desc">
+                    {{ $post->content }}
+                </x-slot>
+                <x-slot name="timestamp">
+                    {{ $post->created_at->diffForHumans() }}
+                </x-slot>
+        </x-post-card> --}}
+        {{-- @endforeach --}}
+        @foreach ($posts as $post)
+            @include('posts.load')
+        @endforeach
 
-        <!-- Cerita lainnya -->
-        <div class="story-card">
-            <div class="story-header">
-                <img src="https://via.placeholder.com/40" alt="User Profile">
-                <div class="username">Alice</div>
-                <div class="timestamp">30 minutes ago</div>
-            </div>
-            <img src="https://via.placeholder.com/800x400" alt="Story Image" class="story-image">
-            <div class="story-content">
-                Today, I decided to start a new hobby: painting. Here’s my first attempt, what do you think?
-            </div>
-            <div class="story-actions">
-                <div class="like-dislike">
-                    <span class="like-icon">&#128077;</span> <!-- Emoji like -->
-                    <span>15 Likes</span>
-                </div>
-            </div>
-            <div class="comment-section">
-                <div class="comment">John: That's really good for a first attempt!</div>
-                <div class="comment">Jane: Keep it up, you'll get even better!</div>
-                <input type="text" class="comment-input" placeholder="Add a comment...">
-                <button class="submit-comment">Post</button>
-            </div>
-        </div>
 
     </div>
 @endsection

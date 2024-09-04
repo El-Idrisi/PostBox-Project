@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FreshController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [RouteController::class, 'home'])->middleware('auth')->name('Home');
-Route::get('/fresh', [RouteController::class, 'fresh'])->middleware('auth')->name('fresh');
+Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('Home');
+Route::get('/fresh', [FreshController::class, 'index'])->middleware('auth')->name('fresh');
 Route::get('/notification', [RouteController::class, 'notification'])->middleware('auth')->name('notification');
 Route::get('/Postbox', [RouteController::class, 'postbox'])->middleware('auth')->name('Postbox');
 Route::get('/search', [RouteController::class, 'search'])->middleware('auth')->name('search');

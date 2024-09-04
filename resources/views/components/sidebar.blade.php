@@ -7,9 +7,10 @@
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <img src="{{ asset('storage/'.$img) }}" alt="Profile" class="rounded-circle"
-                            width="30" height="30">
-                        {{ $nama }}
+                        <img src="{{ asset('storage/'.$img) }}" alt="Profile" class="rounded-circle" width="30" height="30">
+                        <span style="margin-left: 5px">
+                            {{ $nama }}
+                        </span>
                     </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
