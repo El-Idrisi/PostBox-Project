@@ -18,7 +18,7 @@
 </div>
 @endsection
 
-@section('styles')
+@push('styles')
 <style>
     .input-group {
         max-width: 600px;
@@ -46,4 +46,4 @@
         margin: 0;
     }
 </style>
-@endsection
+@endpush

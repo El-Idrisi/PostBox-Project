@@ -3,27 +3,38 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FreshController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
 
+//! Home & Fresh Page
 Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('Home');
+
 Route::get('/fresh', [FreshController::class, 'index'])->middleware('auth')->name('fresh');
+//! END Home & Fresh Page
+
 Route::get('/notification', [RouteController::class, 'notification'])->middleware('auth')->name('notification');
-Route::get('/Postbox', [RouteController::class, 'postbox'])->middleware('auth')->name('Postbox');
+
 Route::get('/search', [RouteController::class, 'search'])->middleware('auth')->name('search');
 
+//! Profile
 Route::get('/profile/{username}', [ProfileController::class, 'show'])->middleware('auth')->name('profile.show');
 
 Route::get('/profile/{username}/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('profile.edit');
 
 Route::put('/profile/{username}', [ProfileController::class, 'update'])->middleware('auth')->name('profile.update');
+//! END Profile
 
+//! Post
+Route::get('/Postbox', [PostController::class, 'postbox'])->middleware('auth')->name('Postbox');
 
+Route::post('/Postbox', [PostController::class, 'post'])->middleware('auth')->name('postbox.post');
+//! END Post
 
-Route::get('/profile/edit', function () {
-    return view('editprofile');
-})->name('editprofile');
+// Route::get('/profile/edit', function () {
+//     return view('editprofile');
+// })->name('editprofile');
 
 
 // Route::post('/profile/update', function () {
