@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PostController extends Controller
 {
-        public function postbox()
+    public function postbox()
     {
         $user = auth()->user()->load('profile');
 
-        return view('postbox', ['user' => $user]);
+        return view('postbox', ['user' => $user])->with('success', 'Task Created Successfully!');
     }
 
     public function post(Request $request)

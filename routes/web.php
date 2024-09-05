@@ -42,6 +42,10 @@ Route::post('/Postbox', [PostController::class, 'post'])->middleware('auth')->na
 //     return redirect()->route('profile.edit');
 // })->middleware('auth')->name('profile.update');
 
+Route::get('/tests', function () {
+    return view('test');
+})->name('test');
+
 
 Route::get('/profile/settings', function () {
     return view('settings');
