@@ -63,7 +63,7 @@
 
     <x-notif-card>
         <x-slot:user>
-            Budi
+            BudiJago
         </x-slot:user>
         <x-slot:timestamp>
             5 minutes ago
