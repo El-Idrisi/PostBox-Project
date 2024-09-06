@@ -78,6 +78,7 @@
             /* Gambar cerita */
             .story-image {
                 width: 100%;
+                /* height: 240px; */
                 border-radius: 8px;
                 margin-bottom: 1rem;
             }

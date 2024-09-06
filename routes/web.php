@@ -24,6 +24,20 @@ Route::get('/profile/{username}', [ProfileController::class, 'show'])->middlewar
 Route::get('/profile/{username}/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('profile.edit');
 
 Route::put('/profile/{username}', [ProfileController::class, 'update'])->middleware('auth')->name('profile.update');
+
+Route::get('/profile/{username}/settings', [ProfileController::class, 'setting'])->middleware('auth')->name('profile.setting');
+
+Route::get('/profile/{username}/settings/change-password', [ProfileController::class, 'show_change_pass'])->middleware('auth')->name('profile.show_change_password');
+
+Route::get('/profile/{username}/settings/change-email', [ProfileController::class, 'showChangeEmail'])->middleware('auth')->name('profile.show_change_email');
+
+Route::get('/profile/{username}/settings/delete', [ProfileController::class, 'showDeleteAccount'])->middleware('auth')->name('profile.show_delete');
+
+Route::post('/profile/{username}/changeEmail', [ProfileController::class, 'changeEmail'])->middleware('auth')->name('profile.change_email');
+
+Route::post('profile/{username}/changePassword', [ProfileController::class, 'changePassword'])->middleware('auth')->name('profile.change_password');
+
+Route::post('/', [ProfileController::class, 'delete'])->middleware('auth')->name('profile.delete');
 //! END Profile
 
 //! Post
@@ -47,9 +61,6 @@ Route::get('/tests', function () {
 })->name('test');
 
 
-Route::get('/profile/settings', function () {
-    return view('settings');
-})->middleware('auth')->name('settings');
 
 Route::post('/settings/update', function () {
     // Logika update settings (belum diimplementasikan)

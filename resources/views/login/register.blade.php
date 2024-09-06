@@ -18,7 +18,9 @@
         @error('name')
             <p class="text-danger">{{ $message }}</p>
         @enderror
-        <x-input-email></x-input-email>
+        <x-input-email>
+            Email
+        </x-input-email>
         @error('email')
             <p class="text-danger">{{ $message }}</p>
         @enderror
@@ -29,9 +31,6 @@
             <x-slot:id>
                 password
             </x-slot:id>
-            <x-slot:type>
-                password
-            </x-slot:type>
             <x-slot:name>
                 password
             </x-slot:name>
@@ -43,13 +42,9 @@
             <x-slot:title>
                 Confirm Password
             </x-slot:title>
-
             <x-slot:id>
                 password_confirmation
             </x-slot:id>
-            <x-slot:type>
-                password
-            </x-slot:type>
             <x-slot:name>
                 password_confirmation
             </x-slot:name>

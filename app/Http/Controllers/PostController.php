@@ -12,7 +12,7 @@ class PostController extends Controller
     {
         $user = auth()->user()->load('profile');
 
-        return view('postbox', ['user' => $user])->with('success', 'Task Created Successfully!');
+        return view('posts.index', ['user' => $user])->with('success', 'Task Created Successfully!');
     }
 
     public function post(Request $request)
@@ -23,26 +23,19 @@ class PostController extends Controller
             return redirect()->back()->with('error', 'You are not authorized to edit this profile.');
         }
 
-        // dd($request->all());
 
         $validate = $request->validate([
-            "image" => 'mimes:png,jpg,jpeg|nullable',
+            "image" => 'mimes:png,jpg,jpeg,webp|nullable|image|max:1024',
             "title" => 'required|string|max:50',
             "content" => 'required|string|max:255'
         ]);
 
-        // if ($request->hasFile('image')) {
-        //     $image = $request->file('image')->store('public/post-img');
-        //     $validate['image'] = $image;
-        // }
-
-        // $post = new Post();
-        // $post->user_id = $user->id;
-        // $post->title = $request->title;
-        // $post->content = $request->content;
-        // $post->save();
-
-
+        // $request->validate([
+        //     "title" => ['required','string','max:50'],
+        //     "content" => ['required','string','max:255'],
+        //     "image" => 'image|nullable|max:1024|mimes:png,jpg,jpeg,webp',
+        // ]);
+        // dd($request->all());
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('post-img', 'public');
@@ -53,7 +46,7 @@ class PostController extends Controller
             'user_id' => $user->id,
             'title' => $request->title,
             'content' => $request->content,
-            'image' => $validate['image'],
+            'image' => $validate['image'] ?? null,
         ]);
 
 

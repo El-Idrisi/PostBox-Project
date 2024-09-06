@@ -127,7 +127,7 @@
                 <a href="{{ route('profile.edit', $target['name']) }}">
                     <button class="btn-edit">Edit Profile</button>
                 </a>
-                <a href="{{ route('settings') }}">
+                <a href="{{ route('profile.setting', $target['name']) }}">
                     <button class="btn-settings">Settings</button>
                 </a>
             @endif
@@ -150,3 +150,16 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                title: 'Success',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+            })
+        </script>
+    @endif
+@endpush

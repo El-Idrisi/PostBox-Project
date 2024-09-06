@@ -14,7 +14,7 @@ class AuthController extends Controller
     // Menampilkan halaman login
     public function showLoginForm()
     {
-        return view('login');
+        return view('login.login');
     }
 
     // Proses login
@@ -38,7 +38,7 @@ class AuthController extends Controller
     // Menampilkan halaman register
     public function showRegisterForm()
     {
-        return view('register');
+        return view('login.register');
     }
 
     // Proses registrasi

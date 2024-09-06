@@ -4,18 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Container\Attributes\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log as FacadesLog;
 
 use function Laravel\Prompts\error;
 
 class ProfileController extends Controller
 {
-    public function index()
-    {
-        $casts = DB::table('profiles')->get();
-        return view('Home', compact('profile'));
-    }
 
     public function show($username)
     {
@@ -25,14 +24,14 @@ class ProfileController extends Controller
         $followerCount = $target->followers()->count();
         $followingCount = $target->following()->count();
 
-        return view('profile', compact('target', 'postCount', 'followerCount', 'followingCount', 'user'));
+        return view('profile.index', compact('target', 'postCount', 'followerCount', 'followingCount', 'user'));
     }
 
     public function edit($username)
     {
         $user = auth()->user()->load('profile');
 
-        return view('editProfile', compact('user'));
+        return view('profile.edit', compact('user'));
     }
 
     public function update(Request $request, $name)
@@ -74,4 +73,99 @@ class ProfileController extends Controller
 
         return redirect()->route('profile.show', $user->name)->with('success', 'Profile updated successfully!');
     }
+
+    public function setting($name)
+    {
+        $user = User::where('name', $name)->firstOrFail();
+
+        return view('profile.settings', compact('user'));
+    }
+
+    // * PASSWORD CONTROLLERS
+    public function show_change_pass($name)
+    {
+        $user = User::where('name', $name)->firstOrFail();
+
+        return view('profile.change-pass', compact('user'));
+    }
+
+    public function changePassword(Request $request, $name)
+    {
+
+
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = User::where('name', $name)->firstOrFail();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'The provided password does not match your current password.']);
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return redirect()->route('profile.show', $user->name)->with('success', 'Password changed successfully!');
+
+        // dd($request->all(), !Hash::check($request->new_password, $user->password));
+    }
+    // * PASSWORD CONTROLLERS
+
+    // * EMAIL CONTROLLERS
+    public function showChangeEmail($name)
+    {
+        $user = User::where('name', $name)->firstOrFail();
+
+        return view('profile.change-email', compact('user'));
+    }
+
+    public function changeEmail(Request $request, $name)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
+
+        $user = User::where('name', $name)->firstOrFail();
+
+        $user->email = $request->email;
+        $user->save();
+
+        return redirect()->route('profile.show', $user->name)->with('success', 'Email changed successfully!');
+    }
+    // * EMAIL CONTROLLERS
+
+    // * DELETE CONTROLLERS
+    public function showDeleteAccount($name)
+    {
+        $user = User::where('name', $name)->firstOrFail();
+
+        return view('profile.delete-account', compact('user'));
+    }
+
+    public function delete(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+        ]);
+
+        $user = Auth::user();
+
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'The provided password is incorrect.']);
+        }
+
+        // // Perform any cleanup tasks here (e.g., deleting related data)
+
+        Auth::logout();
+        User::destroy($user->id);
+
+        return redirect()->route('login')->with('success', 'Your account has been successfully deleted.');
+
+        // dd($request->all(), !Hash::check($request->password, $user->password));
+    }
+    // * DELETE CONTROLLERS
 }

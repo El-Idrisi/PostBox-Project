@@ -14,7 +14,9 @@
             {{ route('login.submit') }}
         </x-slot:route>
 
-        <x-input-email></x-input-email>
+        <x-input-email>
+            Email
+        </x-input-email>
         <x-input-password>
             <x-slot:title>
                 Password
