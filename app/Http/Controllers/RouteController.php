@@ -21,11 +21,4 @@ class RouteController extends Controller
 
         return view('profile', ['user' => $user]);
     }
-
-    public function search()
-    {
-        $user = auth()->user()->load('profile');
-
-        return view('search', ['user' => $user]);
-    }
 }

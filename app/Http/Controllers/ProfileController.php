@@ -18,13 +18,15 @@ class ProfileController extends Controller
 
     public function show($username)
     {
-        $user = auth()->user()->load('profile');
+        $user = auth()->user();
         $target = User::where('name', $username)->firstOrFail();
         $postCount = $target->posts()->count();
         $followerCount = $target->followers()->count();
         $followingCount = $target->following()->count();
 
-        return view('profile.index', compact('target', 'postCount', 'followerCount', 'followingCount', 'user'));
+        $isFollowing = $user->following()->where('following_id', $target->id)->exists();
+
+        return view('profile.index', compact('target', 'postCount', 'followerCount', 'followingCount', 'user', 'isFollowing'));
     }
 
     public function edit($username)
@@ -133,7 +135,7 @@ class ProfileController extends Controller
         if (!Hash::check($request->current_password, $user->password)) {
             return back()->withErrors(['current_password' => 'The provided password is incorrect.']);
         }
-        
+
         $user->email = $request->email;
         $user->save();
 
@@ -172,4 +174,17 @@ class ProfileController extends Controller
         // dd($request->all(), !Hash::check($request->password, $user->password));
     }
     // * DELETE CONTROLLERS
+
+    // * FOLLOW CONTROLLERS
+    public function follow(User $user)
+    {
+        auth()->user()->following()->attach($user->id);
+        return back()->with('success', 'You are now following ' . $user->name);
+    }
+
+    public function unfollow(User $user)
+    {
+        auth()->user()->following()->detach($user->id);
+        return back()->with('success', 'You have unfollowed ' . $user->name);
+    }
 }

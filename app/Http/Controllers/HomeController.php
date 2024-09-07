@@ -8,10 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+
 
     public function index(Request $request)
     {
@@ -20,6 +17,6 @@ class HomeController extends Controller
             ->inRandomOrder()
             ->paginate(30);
 
-        return view('home', compact('posts', 'user'));
+        return view('posts.home', compact('posts', 'user'));
     }
 }

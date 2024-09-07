@@ -130,7 +130,21 @@
                 <a href="{{ route('profile.setting', $target['name']) }}">
                     <button class="btn-settings">Settings</button>
                 </a>
+            @else
+                @if ($isFollowing)
+                    <form action="{{ route('profile.unfollow', $target->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn-settings">Unfollow</button>
+                    </form>
+                @else
+                    <form action="{{ route('profile.follow', $target->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn-edit">Follow</button>
+                    </form>
+                @endif
             @endif
+
         </div>
 
 

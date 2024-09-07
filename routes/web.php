@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RouteController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 //! Home & Fresh Page
@@ -14,9 +15,6 @@ Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('Hom
 Route::get('/fresh', [FreshController::class, 'index'])->middleware('auth')->name('fresh');
 //! END Home & Fresh Page
 
-Route::get('/notification', [RouteController::class, 'notification'])->middleware('auth')->name('notification');
-
-Route::get('/search', [RouteController::class, 'search'])->middleware('auth')->name('search');
 
 //! Profile
 Route::get('/profile/{username}', [ProfileController::class, 'show'])->middleware('auth')->name('profile.show');
@@ -38,7 +36,12 @@ Route::post('/profile/{username}/changeEmail', [ProfileController::class, 'chang
 Route::post('profile/{username}/changePassword', [ProfileController::class, 'changePassword'])->middleware('auth')->name('profile.change_password');
 
 Route::post('/', [ProfileController::class, 'delete'])->middleware('auth')->name('profile.delete');
+
+Route::post('/profile/{user}/follow', [ProfileController::class, 'follow'])->name('profile.follow');
+
+Route::delete('/profile/{user}/unfollow', [ProfileController::class, 'unfollow'])->name('profile.unfollow');
 //! END Profile
+
 
 //! Post
 Route::get('/Postbox', [PostController::class, 'postbox'])->middleware('auth')->name('Postbox');
@@ -46,9 +49,19 @@ Route::get('/Postbox', [PostController::class, 'postbox'])->middleware('auth')->
 Route::post('/Postbox', [PostController::class, 'post'])->middleware('auth')->name('postbox.post');
 //! END Post
 
+
+// ! Search
+Route::get('/search', [SearchController::class, 'index'])->middleware('auth')->name('search');
+
+Route::get('/search/result', [SearchController::class, 'search'])->middleware('auth')->name('search.result');
+// ! END Search
+
+
+Route::get('/notification', [RouteController::class, 'notification'])->middleware('auth')->name('notification');
+
 // Route::get('/profile/edit', function () {
-//     return view('editprofile');
-// })->name('editprofile');
+    //     return view('editprofile');
+    // })->name('editprofile');
 
 
 // Route::post('/profile/update', function () {
@@ -62,15 +75,13 @@ Route::get('/tests', function () {
 
 
 
-Route::post('/settings/update', function () {
-    // Logika update settings (belum diimplementasikan)
-    return redirect()->route('settings');
-})->middleware('auth')->name('settings.update');
 
 
+// ! Login and Register
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/login', [AuthController::class,'login'])->name('login.submit');
 Route::post('/register', [AuthController::class,'register'])->name('register.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+// ! Login and Register
 

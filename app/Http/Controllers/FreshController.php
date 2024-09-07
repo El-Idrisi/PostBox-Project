@@ -14,6 +14,6 @@ class FreshController extends Controller
             ->latest()
             ->paginate(30);
 
-        return view('fresh', compact('freshPosts', 'user'));    
+        return view('posts.fresh', compact('freshPosts', 'user'));
     }
 }
