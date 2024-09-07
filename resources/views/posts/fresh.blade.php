@@ -65,7 +65,19 @@
             .story-header .username {
                 font-weight: bold;
                 color: #f5f5f5;
-                /* Warna teks terang */
+                text-decoration: none;
+                transition: 300ms all
+                    /* Warna teks terang */
+            }
+
+            .story-header .user {
+                text-decoration: none;
+
+            }
+
+            .story-header a.user:hover div {
+                text-decoration: none;
+                color: #3b82f6
             }
 
             .story-header .timestamp {

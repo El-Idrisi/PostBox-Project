@@ -1,7 +1,11 @@
 <div class="mb-5 card story-card">
     <div class="story-header">
+        <a href="{{ route('profile.show', $post->user->name) }}" class="user d-flex justify-content-center align-items-center">
         <img src="{{ asset('storage/' . $post->user->profile->profile_picture) }}" alt="User Profile">
-        <div class="username">{{ $post->user->name }}</div>
+        <div class="username">
+                {{ $post->user->name }}
+            </div>
+        </a>
         <div class="timestamp">{{ $post->created_at->diffForHumans() }}</div>
     </div>
     <div class="card-body">
