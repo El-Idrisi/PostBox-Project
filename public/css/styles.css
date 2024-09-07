@@ -150,11 +150,6 @@ li.logout:hover a{
     border-radius: 8px;
 }
 
-.ajax-load {
-    padding: 10px 0px;
-    width: 100%;
-}
-
 
 /* Responsive adjustments */
 @media (min-width: 769px) {

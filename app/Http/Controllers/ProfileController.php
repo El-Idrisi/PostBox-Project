@@ -130,6 +130,10 @@ class ProfileController extends Controller
 
         $user = User::where('name', $name)->firstOrFail();
 
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'The provided password is incorrect.']);
+        }
+        
         $user->email = $request->email;
         $user->save();
 
