@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FreshController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RouteController;
@@ -57,7 +58,9 @@ Route::get('/search/result', [SearchController::class, 'search'])->middleware('a
 // ! END Search
 
 
-Route::get('/notification', [RouteController::class, 'notification'])->middleware('auth')->name('notification');
+Route::get('/notification', [NotificationController::class, 'index'])->middleware('auth')->name('notification');
+
+Route::post('/notifications/{notification}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 
 // Route::get('/profile/edit', function () {
     //     return view('editprofile');

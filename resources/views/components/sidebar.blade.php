@@ -1,5 +1,5 @@
 <!-- resources/views/components/sidebar.blade.php -->
-<div class="text-white bg-black sidebar" id="sidebar">
+<div class="overflow-x-hidden text-white bg-black sidebar" id="sidebar">
     <div class="py-4 sidebar-header">
         <h4>Menu</h4>
         <div class="accordion" id="accordionExample">
@@ -7,7 +7,8 @@
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <img src="{{ asset('storage/'.$img) }}" alt="Profile" class="rounded-circle" width="30" height="30">
+                        <img src="{{ asset('storage/' . $img) }}" alt="Profile" class="rounded-circle" width="30"
+                            height="30">
                         <span style="margin-left: 5px">
                             {{ $nama }}
                         </span>
@@ -18,7 +19,7 @@
                         <ul class="list-group list-group-flush">
                             <li>
                                 <a class="list-group-item {{ request()->routeIs('profile') ? 'active' : '' }}"
-                                    href="{{ route("profile.show", $nama) }}">
+                                    href="{{ route('profile.show', $nama) }}">
                                     <i class="fa-solid fa-user"></i> {{ $nama }}
                                 </a>
                             </li>
@@ -51,14 +52,20 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ request()->routeIs('search') ? 'active' : '' }}" href="{{ route('search') }}">
+            <a class="nav-link {{ request()->routeIs('search') || request()->routeIs('search.result') ? 'active' : '' }}"
+                href="{{ route('search') }} ">
                 <i class="fas fa-search me-2"></i> Search
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ request()->routeIs('notification') ? 'active' : '' }}"
+            <a class="nav-link position-relative {{ request()->routeIs('notification') ? 'active' : '' }}"
                 href="{{ route('notification') }}">
                 <i class="fas fa-bell me-2"></i> Notifications
+                @if(auth()->user()->notifications()->where('is_read', false)->count() > 0)
+                <span class="top-0 badge bg-danger position-absolute start-100 translate-middle rounded-pill">
+                    {{ auth()->user()->notifications()->where('is_read', false)->count() }}
+                </span>
+                @endif
             </a>
         </li>
         <li class="nav-item">

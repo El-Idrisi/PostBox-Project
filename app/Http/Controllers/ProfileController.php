@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Follows;
+use App\Models\Notification;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -178,7 +180,25 @@ class ProfileController extends Controller
     // * FOLLOW CONTROLLERS
     public function follow(User $user)
     {
-        auth()->user()->following()->attach($user->id);
+        // auth()->user()->following()->attach($user->id);
+
+        $follower = auth()->user();
+
+        // Buat follow baru
+        $follow = Follows::create([
+            'follower_id' => $follower->id,
+            'following_id' => $user->id
+        ]);
+
+        // Buat notifikasi
+        Notification::create([
+            'user_id' => $user->id,  // User yang difollow
+            'follow_id' => $follow->id
+        ]);
+
+        // dd($follow->id);
+
+
         return back()->with('success', 'You are now following ' . $user->name);
     }
 

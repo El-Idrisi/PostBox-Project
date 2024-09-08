@@ -17,6 +17,6 @@ class HomeController extends Controller
             ->inRandomOrder()
             ->paginate(30);
 
-        return view('posts.home', compact('posts', 'user'));
+        return view('index', compact('posts', 'user'));
     }
 }

@@ -21,4 +21,9 @@ class Follows extends Model
     public function following() {
         return $this->belongsTo(User::class, 'following_id');
     }
+
+    public function notifications( )
+    {
+        return $this->hasMany(Notification::class);
+    }
 }

@@ -56,21 +56,44 @@
                 color: rgba(255, 255, 255, 0.7);
                 margin-left: auto;
             }
+
+            .fa-check {
+                transition: 300ms all
+            }
+
+            .fa-check:hover {
+                color: #3b82f6;
+            }
         </style>
     @endpush
 
 
     <div class="notification-container">
-        <h2 class="notification-header">Notifications</h2>
 
-        <x-notif-card>
-            <x-slot:user>
-                BudiJago
-            </x-slot:user>
-            <x-slot:timestamp>
-                5 minutes ago
-            </x-slot:timestamp>
-        </x-notif-card>
+        {{-- {{ $notifications }} --}}
+        <h2 class="notification-header">Notifications</h2>
+        @if (Session::has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success</strong> {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @foreach ($notifications as $notification)
+            <div class="notification-card">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-text">{{ $notification->follow->follower->name }} started following you.</div>
+                <div class="notification-time">{{ $notification->created_at->diffForHumans() }}</div>
+                <div class="ms-2 check">
+                    <form action="{{ route('notifications.markAsRead', $notification) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-link text-secondary fs-4 check">
+                            <i class="fa-solid fa-check" title="Mark as Read"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        @endforeach
+
 
     </div>
 @endsection

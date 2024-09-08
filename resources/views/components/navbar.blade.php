@@ -7,7 +7,7 @@
         </button>
         <a class="gap-2 navbar-brand d-flex justify-content-center align-items-center" href="/">
             <img src="{{ asset('img/PostBox.png') }}" alt="PostBox" width="45">
-            <span class="text-brand">PostBox</span>
+            <span class="text-brand" id="text-brand">PostBox</span>
         </a>
     </div>
 </nav>
