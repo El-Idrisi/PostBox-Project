@@ -17,10 +17,10 @@
         @endif
         <div class="story-actions">
             <div class="like">
-                <a href="#" class="text-white like">
-                    <i class="fa-regular fa-thumbs-up me-2 like-icon"></i> <!-- Emoji like -->
-                    <span>10 Likes</span>
-                </a>
+                <button class="text-white btn like-button" data-post-id="{{ $post->id }}">
+                    <i class="fa-{{ $post->isLikedBy(auth()->user()) ? 'solid' : 'regular' }} fa-thumbs-up like-icon"></i>
+                    <span class="likes-count">{{ $post->likes()->count() }}</span> Likes
+                </button>
             </div>
             <div class="comment">
                 <a href="{{ route('posts.show', $post) }}" class="text-white like">

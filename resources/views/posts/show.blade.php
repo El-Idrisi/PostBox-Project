@@ -217,16 +217,7 @@
     @endpush
 
     <div class="stories-container">
-        <h2 class="stories-header">Stories</h2>
-
-        {{-- @foreach ($posts as $post) --}}
-
-        {{-- @include('posts.load') --}}
-        {{-- @endforeach --}}
-        {{-- @foreach ($post->comments as $comment)
-            {{ $comment }}
-        @endforeach --}}
-
+        <h2 class="stories-header">Post</h2>
         <div class="mb-5 card story-card">
             <div class="story-header">
                 <a href="{{ route('profile.show', $post->user->name) }}"
@@ -246,10 +237,10 @@
                 @endif
                 <div class="story-actions">
                     <div class="like">
-                        <a href="#" class="text-white like">
-                            <i class="fa-regular fa-thumbs-up me-2 like-icon"></i> <!-- Emoji like -->
-                            <span>10 Likes</span>
-                        </a>
+                        <button class="text-white btn like-button" data-post-id="{{ $post->id }}">
+                            <i class="fa-{{ $isLiked ? 'solid' : 'regular' }} fa-thumbs-up like-icon"></i>
+                            <span class="likes-count">{{ $post->likes()->count() }}</span> Likes
+                        </button>
                     </div>
                     <div class="comment-link">
                         <a href="{{ route('posts.show', $post) }}" class="text-white like">
@@ -262,20 +253,20 @@
                 </div>
                 <div class="comment-section text-start">
                     @foreach ($post->comments as $comment)
-                    <div class="comment">
-                        <div class="user-time">
-                            <img src="{{ asset('storage/profile_pictures/logo.png') }}" alt="">
-                            <div class="user">
-                                <a class="user-comment"
-                                    href="{{ route('profile.show', $comment->user->name) }}">{{ $comment->user->name }}:</a>
-                                <div class="timestap">Commented by on
-                                    {{ $comment->created_at->format('M d, Y') }}</div>
+                        <div class="comment">
+                            <div class="user-time">
+                                <img src="{{ asset('storage/profile_pictures/logo.png') }}" alt="">
+                                <div class="user">
+                                    <a class="user-comment"
+                                        href="{{ route('profile.show', $comment->user->name) }}">{{ $comment->user->name }}:</a>
+                                    <div class="timestap">Commented by on
+                                        {{ $comment->created_at->format('M d, Y') }}</div>
+                                </div>
+                            </div>
+                            <div class="comment-container">
+                                <p class="content">{{ $comment->content }}</p>
                             </div>
                         </div>
-                        <div class="comment-container">
-                            <p class="content">{{ $comment->content }}</p>
-                        </div>
-                    </div>
                     @endforeach
 
                     <form action="{{ route('posts.comment', $post) }}" method="POST">
@@ -291,4 +282,32 @@
 
 
     </div>
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+                $('.like-button').click(function() {
+                    var postId = $(this).data('post-id');
+                    var button = $(this);
+
+                    $.ajax({
+                        url: '/posts/' + postId + '/like',
+                        type: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                button.find('.likes-count').text(response.likes_count);
+                                if (response.action === 'liked') {
+                                    button.find('i').removeClass('fa-regular').addClass('fa-solid');
+                                } else {
+                                    button.find('i').removeClass('fa-solid').addClass('fa-regular');
+                                }
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+    @endpush
 @endsection

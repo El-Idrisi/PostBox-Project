@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -13,7 +14,7 @@ class PostController extends Controller
     {
         $user = auth()->user()->load('profile');
 
-        return view('posts.index', ['user' => $user])->with('success', 'Task Created Successfully!');
+        return view('posts.index', compact('user'))->with('success', 'Task Created Successfully!');
     }
 
     public function post(Request $request)
@@ -45,13 +46,14 @@ class PostController extends Controller
 
 
         return redirect()->route('Postbox')->with('success', 'Post created successfully!');
-
     }
 
-    public function show (Post $post) {
-        $user = auth();
+    public function show(Post $post)
+    {
         $post->load(['user', 'comments.user.profile']);
-        return view('posts.show', compact('post'));
+        $isLiked = $post->isLikedBy(auth()->user());
+
+        return view('posts.show', compact('post', 'isLiked'));
     }
 
     public function addComment(Request $request, Post $post)
@@ -68,5 +70,30 @@ class PostController extends Controller
         $post->comments()->save($comment);
 
         return back()->with('success', 'Comment added successfully');
+    }
+
+    public function like(Post $post)
+    {
+        $user = auth()->user();
+        $existing_like = Like::where('user_id', $user->id)
+            ->where('post_id', $post->id)
+            ->first();
+
+        if ($existing_like) {
+            $existing_like->delete();
+            $action = 'unliked';
+        } else {
+            Like::create([
+                'user_id' => $user->id,
+                'post_id' => $post->id
+            ]);
+            $action = 'liked';
+        }
+
+        return response()->json([
+            'success' => true,
+            'likes_count' => $post->likes()->count(),
+            'action' => $action
+        ]);
     }
 }

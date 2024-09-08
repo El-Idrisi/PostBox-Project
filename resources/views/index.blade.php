@@ -181,4 +181,32 @@
         @endforeach
 
     </div>
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+                $('.like-button').click(function() {
+                    var postId = $(this).data('post-id');
+                    var button = $(this);
+
+                    $.ajax({
+                        url: '/posts/' + postId + '/like',
+                        type: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                button.find('.likes-count').text(response.likes_count);
+                                if (response.action === 'liked') {
+                                    button.find('i').removeClass('fa-regular').addClass('fa-solid');
+                                } else {
+                                    button.find('i').removeClass('fa-solid').addClass('fa-regular');
+                                }
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+    @endpush
 @endsection
