@@ -1,8 +1,9 @@
 <div class="mb-5 card story-card">
     <div class="story-header">
-        <a href="{{ route('profile.show', $post->user->name) }}" class="user d-flex justify-content-center align-items-center">
-        <img src="{{ asset('storage/' . $post->user->profile->profile_picture) }}" alt="User Profile">
-        <div class="username">
+        <a href="{{ route('profile.show', $post->user->name) }}"
+            class="user d-flex justify-content-center align-items-center">
+            <img src="{{ asset('storage/' . $post->user->profile->profile_picture) }}" alt="User Profile">
+            <div class="username">
                 {{ $post->user->name }}
             </div>
         </a>
@@ -15,16 +16,20 @@
             <img class="story-image" src="{{ asset('storage/' . $post->image) }}" alt="Post Image">
         @endif
         <div class="story-actions">
-            <div class="like-dislike">
-                <span class="like-icon">&#128077;</span> <!-- Emoji like -->
-                <span>10 Likes</span>
+            <div class="like">
+                <a href="#" class="text-white like">
+                    <i class="fa-regular fa-thumbs-up me-2 like-icon"></i> <!-- Emoji like -->
+                    <span>10 Likes</span>
+                </a>
             </div>
-        </div>
-        <div class="comment-section text-start">
-            <div class="comment">Jane: Looks amazing!</div>
-            <div class="comment">Alice: Wow, I wish I were there!</div>
-            <input type="text" class="comment-input" placeholder="Add a comment...">
-            <button class="submit-comment">Post</button>
+            <div class="comment">
+                <a href="{{ route('posts.show', $post) }}" class="text-white like">
+                    <i class="fa-regular fa-comment me-2 like-icon"></i> <!-- Emoji like -->
+                    <span>{{ $post->comments->count() }} Comments</span>
+                </a>
+            </div>
+
+
         </div>
     </div>
 </div>

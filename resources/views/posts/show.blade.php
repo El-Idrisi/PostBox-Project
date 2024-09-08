@@ -67,7 +67,7 @@
                 color: #f5f5f5;
                 text-decoration: none;
                 transition: 300ms all
-                /* Warna teks terang */
+                    /* Warna teks terang */
             }
 
             .story-header .user {
@@ -109,15 +109,17 @@
                 justify-content: space-between;
                 align-items: center;
                 margin-top: 1rem;
-                width: 100%;
             }
 
-            .like, .comment {
+
+            .like,
+            .comment-link {
                 display: flex;
                 align-items: center;
             }
 
-            .like a, .comment a {
+            .like a,
+            .comment-link a {
                 color: #f5f5f5;
                 text-decoration: none;
                 transition: 300ms all;
@@ -130,12 +132,11 @@
                 transition: transform 0.3s ease;
             }
 
-            .like-icon:hover{
+            .like-icon:hover {
                 transform: scale(1.2);
             }
 
-
-            /* .comment-section {
+            .comment-section {
                 margin-top: 1rem;
                 border-top: 1px solid #cbd5e0;
                 padding-top: 1rem;
@@ -144,6 +145,10 @@
             .comment {
                 margin-bottom: 0.5rem;
                 color: #f5f5f5;
+                background-color: #27272a;
+                padding: 1rem;
+                border-radius: 10px;
+
             }
 
             .comment-input {
@@ -169,16 +174,121 @@
 
             .submit-comment:hover {
                 background-color: #0069d9;
-            } */
+            }
+
+            .comment .user-time {
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid #f5f5f5;
+                padding-bottom: 1rem;
+                /* justify-content: center; */
+                /* justify-content: space-between; */
+            }
+
+            .comment .user-time img {
+                width: 55px;
+                height: 55px;
+                border-radius: 50%;
+                margin-right: 0.5rem;
+            }
+
+            .comment .user-time .user a {
+                color: #f5f5f5;
+                text-decoration: none;
+                cursor: pointer;
+                transition: 300ms all;
+                font-weight: bold;
+            }
+
+            .comment .user a:hover {
+                color: #3b82f6;
+            }
+
+            .comment .user-time .user .timestap {
+                margin: 0 !important;
+                font-weight: 200;
+            }
+
+            .comment-container p {
+                padding: 1rem .5rem;
+                margin: 0;
+            }
         </style>
     @endpush
 
     <div class="stories-container">
         <h2 class="stories-header">Stories</h2>
 
-        @foreach ($posts as $post)
-            @include('posts.load')
-        @endforeach
+        {{-- @foreach ($posts as $post) --}}
+
+        {{-- @include('posts.load') --}}
+        {{-- @endforeach --}}
+        {{-- @foreach ($post->comments as $comment)
+            {{ $comment }}
+        @endforeach --}}
+
+        <div class="mb-5 card story-card">
+            <div class="story-header">
+                <a href="{{ route('profile.show', $post->user->name) }}"
+                    class="user d-flex justify-content-center align-items-center">
+                    <img src="{{ asset('storage/' . $post->user->profile->profile_picture) }}" alt="User Profile">
+                    <div class="username">
+                        {{ $post->user->name }}
+                    </div>
+                </a>
+                <div class="timestamp">{{ $post->created_at->diffForHumans() }}</div>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title text-start">{{ $post->title }}</h5>
+                <p class="text-start card-text">{{ $post->content }}</p>
+                @if ($post->image != null)
+                    <img class="story-image" src="{{ asset('storage/' . $post->image) }}" alt="Post Image">
+                @endif
+                <div class="story-actions">
+                    <div class="like">
+                        <a href="#" class="text-white like">
+                            <i class="fa-regular fa-thumbs-up me-2 like-icon"></i> <!-- Emoji like -->
+                            <span>10 Likes</span>
+                        </a>
+                    </div>
+                    <div class="comment-link">
+                        <a href="{{ route('posts.show', $post) }}" class="text-white like">
+                            <i class="fa-regular fa-comment me-2 like-icon"></i> <!-- Emoji like -->
+                            <span>{{ $post->comments->count() }} Comments</span>
+                        </a>
+                    </div>
+
+
+                </div>
+                <div class="comment-section text-start">
+                    @foreach ($post->comments as $comment)
+                    <div class="comment">
+                        <div class="user-time">
+                            <img src="{{ asset('storage/profile_pictures/logo.png') }}" alt="">
+                            <div class="user">
+                                <a class="user-comment"
+                                    href="{{ route('profile.show', $comment->user->name) }}">{{ $comment->user->name }}:</a>
+                                <div class="timestap">Commented by on
+                                    {{ $comment->created_at->format('M d, Y') }}</div>
+                            </div>
+                        </div>
+                        <div class="comment-container">
+                            <p class="content">{{ $comment->content }}</p>
+                        </div>
+                    </div>
+                    @endforeach
+
+                    <form action="{{ route('posts.comment', $post) }}" method="POST">
+                        @csrf
+                        <textarea class="comment-input" placeholder="Add a comment..." name="content"></textarea>
+                        <button class="submit-comment">Post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
 
     </div>
 @endsection

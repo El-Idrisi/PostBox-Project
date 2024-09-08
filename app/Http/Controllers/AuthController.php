@@ -14,7 +14,7 @@ class AuthController extends Controller
     // Menampilkan halaman login
     public function showLoginForm()
     {
-        return view('login.login');
+        return view('login.index');
     }
 
     // Proses login

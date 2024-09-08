@@ -48,6 +48,10 @@ Route::delete('/profile/{user}/unfollow', [ProfileController::class, 'unfollow']
 Route::get('/Postbox', [PostController::class, 'postbox'])->middleware('auth')->name('Postbox');
 
 Route::post('/Postbox', [PostController::class, 'post'])->middleware('auth')->name('postbox.post');
+
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+Route::post('/posts/{post}/comment', [PostController::class, 'addComment'])->name('posts.comment');
 //! END Post
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -30,13 +31,6 @@ class PostController extends Controller
             "content" => 'required|string|max:255'
         ]);
 
-        // $request->validate([
-        //     "title" => ['required','string','max:50'],
-        //     "content" => ['required','string','max:255'],
-        //     "image" => 'image|nullable|max:1024|mimes:png,jpg,jpeg,webp',
-        // ]);
-        // dd($request->all());
-
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('post-img', 'public');
             $validate['image'] = $path;
@@ -52,6 +46,27 @@ class PostController extends Controller
 
         return redirect()->route('Postbox')->with('success', 'Post created successfully!');
 
+    }
 
+    public function show (Post $post) {
+        $user = auth();
+        $post->load(['user', 'comments.user.profile']);
+        return view('posts.show', compact('post'));
+    }
+
+    public function addComment(Request $request, Post $post)
+    {
+        $request->validate([
+            'content' => 'required|string|max:1255',
+        ]);
+        $comment = new Comment([
+            'content' => $request->content,
+            'user_id' => auth()->id(),
+            'post_id' => $post->id,
+        ]);
+
+        $post->comments()->save($comment);
+
+        return back()->with('success', 'Comment added successfully');
     }
 }

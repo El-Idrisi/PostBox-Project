@@ -13,7 +13,10 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $user = auth()->user()->load('profile');
-        $posts = Post::with(['user.profile'])
+        $posts = Post::with(['user.profile', 'comments' => function($query) {
+                $query->latest()->take(2);
+            }, 'comments.user'])
+            ->withCount('comments')
             ->inRandomOrder()
             ->paginate(30);
 
