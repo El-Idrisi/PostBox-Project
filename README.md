@@ -48,10 +48,10 @@ PostBox dirancang untuk menyediakan antarmuka yang mudah digunakan untuk jejarin
 ## Alur Pengguna
 
 1. **Pendaftaran/Login**: User baru dapat mendaftar, sementara user yang sudah ada dapat masuk.
-2. 2. **Penyiapan Profil**: Setelah pendaftaran, user dapat mengatur profil mereka dengan informasi pribadi dan gambar profil.
-3. 3. **Penjelajahan**: User dapat menelusuri umpan berita mereka untuk melihat kiriman dari user yang mereka ikuti.
+2. **Penyiapan Profil**: Setelah pendaftaran, user dapat mengatur profil mereka dengan informasi pribadi dan gambar profil.
+3. **Penjelajahan**: User dapat menelusuri umpan berita mereka untuk melihat kiriman dari user yang mereka ikuti.
 4. **Interaksi**: User dapat menyukai postingan, memberikan komentar, dan mengikuti user lain.
-5. 5. **Kreasi Konten**: User dapat membuat postingan mereka sendiri, berbagi pemikiran atau gambar dengan para pengikut mereka.
+5. **Kreasi Konten**: User dapat membuat postingan mereka sendiri, berbagi pemikiran atau gambar dengan para pengikut mereka.
 6. **Notifikasi**: User menerima pemberitahuan tentang pengikut baru, meningkatkan keterlibatan.
 
 ## Teknologi
