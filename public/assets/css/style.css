@@ -66,3 +66,20 @@ a:hover {
     border: none;
     background-color: transparent;
 }
+
+/* Animation Styles */
+.card {
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+    transform: translateY(-30px);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card.hide {
+    opacity: 0;
+    transform: translateY(30px);
+}

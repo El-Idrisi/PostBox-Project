@@ -5,6 +5,26 @@
 @endsection
 
 @section('content')
+    @push('style')
+        <style>
+            /* Animation Styles */
+            .card {
+                opacity: 0;
+                transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+                transform: translateY(-30px);
+            }
+
+            .card.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .card.hide {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        </style>
+    @endpush
     <x-form>
         <x-slot:title>
             Sign Up
@@ -59,4 +79,23 @@
             Already have an account? <a href="{{ route('login') }}">Login</a>
         </x-slot:haveLogin>
     </x-form>
+
+    @push('scripts')
+        <script>
+            function goToLogin(event) {
+                event.preventDefault();
+                const card = document.querySelector('.card');
+                card.classList.add('hide');
+                setTimeout(function() {
+                    window.location.href = "{{ route('register') }}";
+                }, 700); // Match this duration to the CSS transition time
+            }
+
+            window.onload = function() {
+                setTimeout(function() {
+                    document.querySelector('.card').classList.add('show');
+                }, 200); // Delay before showing the card on page load
+            }
+        </script>
+    @endpush
 @endsection

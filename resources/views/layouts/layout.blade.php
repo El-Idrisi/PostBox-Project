@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    @stack('style')
 
 </head>
 <body>
@@ -39,6 +40,8 @@
             })
         </script>
     @endif
+
+    @stack('scripts')
 </body>
 
 </html>
