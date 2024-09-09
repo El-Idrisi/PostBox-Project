@@ -13,7 +13,7 @@
     @stack('style')
 
 </head>
-<body>
+<body>  
 
 </head>
 

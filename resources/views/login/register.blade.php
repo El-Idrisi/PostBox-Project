@@ -5,27 +5,7 @@
 @endsection
 
 @section('content')
-    @push('style')
-        <style>
-            /* Animation Styles */
-            .card {
-                opacity: 0;
-                transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
-                transform: translateY(-30px);
-            }
-
-            .card.show {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            .card.hide {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-        </style>
-    @endpush
-    <x-form>
+    <x-form class="card">
         <x-slot:title>
             Sign Up
         </x-slot:title>
@@ -69,16 +49,36 @@
                 password_confirmation
             </x-slot:name>
         </x-input-password>
-        {{-- <x-input-confirm-password></x-input-confirm-password> --}}
 
         <x-button-submit>
             Sign Up
         </x-button-submit>
 
         <x-slot:haveLogin>
-            Already have an account? <a href="{{ route('login') }}">Login</a>
+            Already have an account? <a href="{{ route('login') }}" onclick="goToLogin(event)">Login</a>
         </x-slot:haveLogin>
     </x-form>
+
+    @push('style')
+        <style>
+            /* Animation Styles */
+            .card {
+                opacity: 0;
+                transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+                transform: translateY(-30px);
+            }
+
+            .card.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .card.hide {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        </style>
+    @endpush
 
     @push('scripts')
         <script>
@@ -87,7 +87,7 @@
                 const card = document.querySelector('.card');
                 card.classList.add('hide');
                 setTimeout(function() {
-                    window.location.href = "{{ route('register') }}";
+                    window.location.href = "{{ route('login') }}";
                 }, 700); // Match this duration to the CSS transition time
             }
 
