@@ -1,4 +1,4 @@
-<div class="mb-5 card story-card">
+<div class="mb-5 card story-card w-100">
     <div class="story-header">
         <a href="{{ route('profile.show', $post->user->name) }}"
             class="user d-flex justify-content-center align-items-center">

@@ -23,18 +23,19 @@
                         </div>
 
                         <div class="gap-2 d-flex">
-
-                            @if (in_array($pengguna->id, $followingIds))
-                                <form action="{{ route('profile.unfollow', $pengguna->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-secondary">Unfollow</button>
-                                </form>
-                            @else
-                                <form action="{{ route('profile.follow', $pengguna->id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary">Follow</button>
-                                </form>
+                            @if (Auth::id() !== $pengguna->id)
+                                @if (in_array($pengguna->id, $followingIds))
+                                    <form action="{{ route('profile.unfollow', $pengguna->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-secondary">Unfollow</button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('profile.follow', $pengguna->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">Follow</button>
+                                    </form>
+                                @endif
                             @endif
                             <a href="{{ route('profile.show', $pengguna->name) }}" class="btn btn-secondary">See More</a>
                         </div>
