@@ -29,7 +29,7 @@
                 {{ auth()->user()->name }}
             </x-slot:nama>
         </x-sidebar>
-        @yield('sidebar')
+        {{-- @yield('sidebar') --}}
 
         <!-- Content -->
         <div class="content content-shifted" id="content">

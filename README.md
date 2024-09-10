@@ -1,4 +1,4 @@
-<p align="center" style="background-color: #212830"><a href="#"><img src="public/img/logo_postboc.png" width="400" alt="Laravel Logo"></a></p>
+<p align="center" style="background-color: #212830"><a href="http://postbox.free.nf/"><img src="public/img/logo_postboc.png" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -8,7 +8,9 @@
 </p>
 
 # Nama Project
-Project kami adalah <b>PostBox</b>
+Project kami adalah <a href="http://postbox.free.nf/"><b>PostBox</b></a>
+<a href="http://postbox.free.nf/">[http://postbox.free.nf/]</a>
+
 
 # Nama Anggota
 <ul>
@@ -61,3 +63,4 @@ PostBox dirancang untuk menyediakan antarmuka yang mudah digunakan untuk jejarin
 - Basis data: MySQL
 - Otentikasi: Sistem autentikasi bawaan Laravel
 - Alert: Library dari JavaScript - SweetAlert2
+
