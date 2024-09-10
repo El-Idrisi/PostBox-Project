@@ -80,7 +80,7 @@
 
             <div class="form-group">
                 <label for="profile_picture">Profile Picture:</label>
-                <input type="file" id="profile_picture" name="profile_picture">
+                <input type="file" id="profile_picture" name="profile_picture" accept="image/png,image/jpeg,image/jpg,image/webp">
             </div>
 
             <div class="form-group">

@@ -118,7 +118,7 @@
     @endpush
 
     <div class="profile-container">
-        <img src="{{ asset('storage/' . $target['profile']['profile_picture']) }}" alt="User Profile" class="profile-image">
+        <img src="{{ asset('img/' . $target['profile']['profile_picture']) }}" alt="User Profile" class="profile-image">
         <h2 class="profile-username">{{ $target['name'] }}</h2>
         <p class="profile-info">{{ $target['profile']['bio'] }}</p>
 

@@ -2,7 +2,7 @@
     <div class="story-header">
         <a href="{{ route('profile.show', $post->user->name) }}"
             class="user d-flex justify-content-center align-items-center">
-            <img src="{{ asset('storage/' . $post->user->profile->profile_picture) }}" alt="User Profile">
+            <img src="{{ asset('img/' . $post->user->profile->profile_picture) }}" alt="User Profile">
             <div class="username">
                 {{ $post->user->name }}
             </div>
@@ -13,7 +13,7 @@
         <h5 class="card-title text-start">{{ $post->title }}</h5>
         <p class="text-start card-text">{{ $post->content }}</p>
         @if ($post->image != null)
-            <img class="story-image" src="{{ asset('storage/' . $post->image) }}" alt="Post Image">
+            <img class="story-image" src="{{ asset('img/' . $post->image) }}" alt="Post Image">
         @endif
         <div class="story-actions">
             <div class="like">

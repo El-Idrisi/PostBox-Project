@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log as FacadesLog;
 
 use function Laravel\Prompts\error;
+use Illuminate\Support\Str;
+use Nette\Utils\Random;
 
 class ProfileController extends Controller
 {
@@ -69,13 +71,16 @@ class ProfileController extends Controller
 
         // Handle profile picture upload
         if ($request->hasFile('profile_picture')) {
-            $path = $request->file('profile_picture')->store('profile_pictures', 'public');
-            $profile->profile_picture = $path;
+            $imageName = time() . "-" . str()->random() . '.' . $request->file('profile_picture')->extension();
+            $request->profile_picture->move(public_path('img/profile_pictures'), $imageName);
+            $profile->profile_picture = 'profile_pictures/'. $imageName;
         }
 
         $user->profile()->save($profile);
 
         return redirect()->route('profile.show', $user->name)->with('success', 'Profile updated successfully!');
+
+        // dd($request->all(), $imageName);
     }
 
     public function setting($name)
