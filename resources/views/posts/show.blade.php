@@ -222,7 +222,7 @@
             <div class="story-header">
                 <a href="{{ route('profile.show', $post->user->name) }}"
                     class="user d-flex justify-content-center align-items-center">
-                    <img src="{{ asset('storage/' . $post->user->profile->profile_picture) }}" alt="User Profile">
+                    <img src="{{ asset('img/' . $post->user->profile->profile_picture) }}" alt="User Profile">
                     <div class="username">
                         {{ $post->user->name }}
                     </div>
@@ -255,7 +255,7 @@
                     @foreach ($post->comments as $comment)
                         <div class="comment">
                             <div class="user-time">
-                                <img src="{{ asset('storage/profile_pictures/logo.png') }}" alt="">
+                                <img src="{{ asset('img/'. $comment->user->profile->profile_picture) }}" alt="">
                                 <div class="user">
                                     <a class="user-comment"
                                         href="{{ route('profile.show', $comment->user->name) }}">{{ $comment->user->name }}:</a>

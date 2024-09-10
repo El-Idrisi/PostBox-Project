@@ -146,9 +146,9 @@
             </x-input-email>
 
             @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
+                <div class="alert alert-danger" role="alert">
+                    {{ $message }}
+                </div>
             @enderror
 
 

@@ -68,16 +68,6 @@ Route::get('/notification', [NotificationController::class, 'index'])->middlewar
 
 Route::post('/notifications/{notification}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 
-// Route::get('/profile/edit', function () {
-//         return view('editprofile');
-//     })->name('editprofile');
-
-
-// Route::post('/profile/update', function () {
-//     // Logika update profil (belum diimplementasikan)
-//     return redirect()->route('profile.edit');
-// })->middleware('auth')->name('profile.update');
-
 
 // ! Login and Register
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');

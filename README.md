@@ -1,4 +1,4 @@
-<p align="center" style="background-color: #212830"><a href="#"><img src="public/img/logo_postboc.png" width="400" alt="Laravel Logo"></a></p>
+<p align="center" style="background-color: #212830"><a href="http://postbox.free.nf/"><img src="public/img/logo_postboc.png" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -8,7 +8,9 @@
 </p>
 
 # Nama Project
-Project kami adalah <b>PostBox</b>
+Project kami adalah <a href="http://postbox.free.nf/"><b>PostBox</b></a> `
+<a href="http://postbox.free.nf/">[http://postbox.free.nf/]</a>
+
 
 # Penjelasan Project
 
@@ -31,6 +33,7 @@ PostBox adalah platform media sosial yang memungkinkan user untuk terhubung, ber
         <li><a href="https://github.com/mtaufik31">Muhammad Taufik Budiman</a></li>
         <li><a href="https://drive.google.com/file/d/1ttKEmcMCq25AtolBunj0UajfqL1_YY5O/view?usp=drive_link">Tiara Ananda Purwito</a></li>
     </ul>
+
 
 # Gambar ERD
 <p align="center">
@@ -67,5 +70,11 @@ PostBox dirancang untuk menyediakan antarmuka yang mudah digunakan untuk jejarin
 - Backend Laravel 
 - Frontend: Mesin templating Blade dengan JavaScript
 - Basis data: MySQL
+<<<<<<< HEAD
 - Authentication: Sistem autentikasi bawaan Laravel
 - Alert: Library dari JavaScript - <strong>SweetAlert2</strong>
+=======
+- Otentikasi: Sistem autentikasi bawaan Laravel
+- Alert: Library dari JavaScript - SweetAlert2
+
+>>>>>>> ed6cc3debda730db66e0e8a3e0314b77d2c8631b

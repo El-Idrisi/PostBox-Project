@@ -33,8 +33,9 @@ class PostController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('post-img', 'public');
-            $validate['image'] = $path;
+            $path = time() . "-" . str()->random() . '.' . $request->file('image')->extension();
+            $request->image->move(public_path('img/posts'), $path);
+            $validate['image'] = 'posts/'.$path;
         }
 
         Post::create([
