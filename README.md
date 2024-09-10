@@ -10,25 +10,33 @@
 # Nama Project
 Project kami adalah <b>PostBox</b>
 
+# Penjelasan Project
+
+PostBox adalah platform media sosial yang memungkinkan user untuk terhubung, berbagi, dan berinteraksi satu sama lain melalui postingan, komentar, dan like. <br>Project yang kami buat ini terinspirasi dari salah satu sosial media yang sering digunakan oleh masyarakat dunia saat ini, yaitu Twitter atau X.
+
 # Nama Anggota
-<ul>
-<li><a href="https://github.com/El-Idrisi">Muhammad El-Idrisi</a></li>
-<li><a href="https://github.com/MuhammmadFahry">Muhammad Fa'hriyansah</a></li>
-<li><a href="https://github.com/mtaufik31">Muhammad Taufik Budiman</a></li>
-<li><a href="https://github.com/tiaraanandapurwito">Tiara Ananda Purwito</a></li>
-</ul>
+<h3>
+    <ul>
+        <li><a href="https://github.com/El-Idrisi">Muhammad El-Idrisi</a></li>
+        <li><a href="https://github.com/MuhammmadFahry">Muhammad Fa'hriyansah</a></li>
+        <li><a href="https://github.com/mtaufik31">Muhammad Taufik Budiman</a></li>
+        <li><a href="https://github.com/tiaraanandapurwito">Tiara Ananda Purwito</a></li>
+    </ul>
+</h3>
 
 # Link Video Presentasi
-
+<ul>
+        <li><a href="https://github.com/El-Idrisi">Muhammad El-Idrisi</a></li>
+        <li><a href="https://drive.google.com/file/d/15xRPDx3Pdfrn6juwQaPsTauGTUQoSPD1/view?usp=sharing">Muhammad Fa'hriyansah</a></li>
+        <li><a href="https://github.com/mtaufik31">Muhammad Taufik Budiman</a></li>
+        <li><a href="https://drive.google.com/file/d/1ttKEmcMCq25AtolBunj0UajfqL1_YY5O/view?usp=drive_link">Tiara Ananda Purwito</a></li>
+    </ul>
 
 # Gambar ERD
 <p align="center">
 <img src="public/img/erd.png">
 </p>
 
-# Penjelasan Project
-
-PostBox adalah platform media sosial yang memungkinkan user untuk terhubung, berbagi, dan berinteraksi satu sama lain melalui postingan, komentar, dan like.
 
 ## Gambaran Umum Proyek
 
@@ -59,5 +67,5 @@ PostBox dirancang untuk menyediakan antarmuka yang mudah digunakan untuk jejarin
 - Backend Laravel 
 - Frontend: Mesin templating Blade dengan JavaScript
 - Basis data: MySQL
-- Otentikasi: Sistem autentikasi bawaan Laravel
-- Alert: Library dari JavaScript - SweetAlert2
+- Authentication: Sistem autentikasi bawaan Laravel
+- Alert: Library dari JavaScript - <strong>SweetAlert2</strong>
