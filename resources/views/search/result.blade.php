@@ -16,7 +16,7 @@
                 <div class="results-placeholder">
                     <div class="alert alert-secondary d-flex justify-content-between" role="alert">
                         <div class="d-flex align-items-center justify-content-center">
-                            <img src="{{ asset('storage/' . $pengguna->profile->profile_picture) }}" alt="Profile Picture"
+                            <img src="{{ asset('img/' . $pengguna->profile->profile_picture) }}" alt="Profile Picture"
                                 class="user-pp">
                             <a class="m-0 ms-2 user-name"
                                 href="{{ route('profile.show', $pengguna->name) }}">{{ $pengguna->name }}</a>
@@ -74,6 +74,7 @@
         .user-pp {
             width: 40px;
             height: 40px;
+            border-radius: 50%
         }
 
         .user-name {
