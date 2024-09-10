@@ -50,12 +50,11 @@ class ProfileController extends Controller
         }
 
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', 'unique:users,name,' . $user->id],
+            'name' => ['max:255'],
+            'username' => ['max:255', 'unique:users,name,' . $user->id],
             'profile_picture' => 'image|nullable|max:1024|mimes:png,jpg,jpeg,webp',
-            'birth_of_day' => ['required', 'date'],
-            'gender' => ['required', 'string', 'in:Male,Female,Other'],
-            'bio' => ['required', 'string', 'max:500']
+            'gender' => ['in:Male,Female,Other'],
+            'bio' => ['max:500']
         ]);
 
         // Update user data
@@ -80,7 +79,7 @@ class ProfileController extends Controller
 
         return redirect()->route('profile.show', $user->name)->with('success', 'Profile updated successfully!');
 
-        // dd($request->all(), $imageName);
+        // dd($request->all());
     }
 
     public function setting($name)

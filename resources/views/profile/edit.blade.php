@@ -83,15 +83,32 @@
                 <input type="file" id="profile_picture" name="profile_picture" accept="image/png,image/jpeg,image/jpg,image/webp">
             </div>
 
+            @error('profile_picture')
+                <div class="alert alert-danger" role="alert">
+                    {{ $message }}
+                </div>
+            @enderror
+
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" value="{{ $user['name'] }}">
             </div>
 
+            @error('name')
+                <div class="alert alert-danger" role="alert">
+                    {{ $message }}
+                </div>
+            @enderror
+
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" value="{{ $user['profile']['username'] }}">
             </div>
+            @error('username')
+                <div class="alert alert-danger" role="alert">
+                    {{ $message }}
+                </div>
+            @enderror
 
             <div class="form-group">
                 <label>Gender</label>
@@ -111,15 +128,33 @@
                 </label>
             </div>
 
+            @error('gender')
+                <div class="alert alert-danger" role="alert">
+                    {{ $message }}
+                </div>
+            @enderror
+
             <div class="form-group">
                 <label for="bio">Bio</label>
                 <input type="text" id="bio" name="bio" value="{{ $user['profile']['bio'] }}">
             </div>
 
+            @error('bio')
+                <div class="alert alert-danger" role="alert">
+                    {{ $message }}
+                </div>
+            @enderror
+
             <div class="form-group">
                 <label for="birth_of_day">Birth Day</label>
                 <input type="date" id="birth_of_day" name="birth_of_day" value="{{ $user['profile']['birth_of_day'] }}">
             </div>
+
+            @error('birth_of_day')
+                <div class="alert alert-danger" role="alert">
+                    {{ $message }}
+                </div>
+            @enderror
 
             <button type="submit" class="btn-save">Save Changes</button>
         </form>
