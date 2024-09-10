@@ -30,7 +30,7 @@ PostBox adalah platform media sosial yang memungkinkan user untuk terhubung, ber
 <ul>
         <li><a href="https://drive.google.com/file/d/1jo-xxlhBtgddLvtmgMNZcCeDJMq1t1vT/view">Muhammad El-Idrisi</a></li>
         <li><a href="https://drive.google.com/file/d/15xRPDx3Pdfrn6juwQaPsTauGTUQoSPD1/view?usp=sharing">Muhammad Fa'hriyansah</a></li>
-        <li><a href="https://github.com/mtaufik31">Muhammad Taufik Budiman</a></li>
+        <li><a href="https://drive.google.com/file/d/1KXLWL1WeihmVW5YCFZeQ6PJ1NncEStW4/view?usp=drive_link">Muhammad Taufik Budiman</a></li>
         <li><a href="https://drive.google.com/file/d/1ttKEmcMCq25AtolBunj0UajfqL1_YY5O/view?usp=drive_link">Tiara Ananda Purwito</a></li>
     </ul>
 
