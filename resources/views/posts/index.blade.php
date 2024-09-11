@@ -140,15 +140,4 @@
     </div>
 @endsection
 
-@push('scripts')
-    @if (Session::has('success'))
-        <script>
-            Swal.fire({
-                title: 'Success',
-                text: '{{ session('success') }}',
-                icon: 'success',
-                confirmButtonText: 'Cool'
-            })
-        </script>
-    @endif
-@endpush
+

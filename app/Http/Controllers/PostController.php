@@ -46,7 +46,7 @@ class PostController extends Controller
         ]);
 
 
-        return redirect()->route('Postbox')->with('success', 'Post created successfully!');
+        return redirect()->route('fresh')->with('success', 'Post created successfully!');
     }
 
     public function show(Post $post)

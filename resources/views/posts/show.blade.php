@@ -233,7 +233,7 @@
                 <h5 class="card-title text-start">{{ $post->title }}</h5>
                 <p class="text-start card-text">{{ $post->content }}</p>
                 @if ($post->image != null)
-                    <img class="story-image" src="{{ asset('storage/' . $post->image) }}" alt="Post Image">
+                    <img class="story-image" src="{{ asset('img/' . $post->image) }}" alt="Post Image">
                 @endif
                 <div class="story-actions">
                     <div class="like">
@@ -255,7 +255,7 @@
                     @foreach ($post->comments as $comment)
                         <div class="comment">
                             <div class="user-time">
-                                <img src="{{ asset('img/'. $comment->user->profile->profile_picture) }}" alt="">
+                                <img src="{{ asset('img/' . $comment->user->profile->profile_picture) }}" alt="">
                                 <div class="user">
                                     <a class="user-comment"
                                         href="{{ route('profile.show', $comment->user->name) }}">{{ $comment->user->name }}:</a>

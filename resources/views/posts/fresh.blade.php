@@ -216,6 +216,14 @@
                     });
                 });
             });
+            @if (Session::has('success'))
+                Swal.fire({
+                    title: 'Success',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                })
+            @endif
         </script>
     @endpush
 @endsection

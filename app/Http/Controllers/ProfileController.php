@@ -27,10 +27,11 @@ class ProfileController extends Controller
         $postCount = $target->posts()->count();
         $followerCount = $target->followers()->count();
         $followingCount = $target->following()->count();
+        $posts = $target->posts()->latest()->paginate(10);
 
         $isFollowing = $user->following()->where('following_id', $target->id)->exists();
 
-        return view('profile.index', compact('target', 'postCount', 'followerCount', 'followingCount', 'user', 'isFollowing'));
+        return view('profile.index', compact('target', 'postCount', 'followerCount', 'followingCount', 'user', 'isFollowing', 'posts'));
     }
 
     public function edit($username)
